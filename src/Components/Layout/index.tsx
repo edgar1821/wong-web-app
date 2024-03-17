@@ -1,5 +1,5 @@
 import Navbar from "../Navbar";
-
+import Footer from "../Footer";
 function Layout({
   children,
 }: Readonly<{
@@ -12,11 +12,7 @@ function Layout({
         {children}
       </div>
 
-      <footer className="bg-gray-800 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 - Derechos Reservados</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
