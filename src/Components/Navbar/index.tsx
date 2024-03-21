@@ -1,15 +1,12 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import WongLog from "../../assets/images/wong_logo.jpg";
+import Navbarthemen from "./theme";
 
 function NavbarWong() {
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded theme={Navbarthemen}>
       <Navbar.Brand href="/">
-        <img
-          src={WongLog}
-          className="mr-3  sm:h-9 h-16"
-          alt="Flowbite React Logo"
-        />
+        <img src={WongLog} className="mr-3 h-10" alt="Flowbite React Logo" />
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown
