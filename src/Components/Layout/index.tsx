@@ -9,9 +9,9 @@ function Layout({
 }>) {
   //flex-col justify-center items-center flex-grow
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col">
       <Navbar />
-      <div className="container flex flex-row h-full">
+      <div className="container flex h-full flex-row">
         <div className="hidden md:block">
           <Sidebar />
         </div>

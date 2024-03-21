@@ -6,7 +6,11 @@ function NavbarWong() {
   return (
     <Navbar fluid rounded theme={Navbarthemen}>
       <Navbar.Brand href="/">
-        <img src={WongLog} className="mr-3 h-10" alt="Flowbite React Logo" />
+        <img
+          src={WongLog}
+          className="mr-3 h-10"
+          alt="Flowbite React Logo"
+        />
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown
