@@ -43,13 +43,13 @@ const InputText = forwardRef(
             disabled={disabled}
             className="
             focus:ring-primary-600 
-            focus:border-brand-green-100
-            block w-full 
-            rounded-lg 
+            block
+            w-full rounded-lg 
             border 
             border-gray-300 
-            bg-gray-50 p-2.5 
-            text-gray-900 
+            bg-gray-50 
+            p-2.5 text-gray-900 
+            focus:border-brand-green-100 
             dark:border-gray-600 
             dark:bg-gray-700 
             dark:text-white 

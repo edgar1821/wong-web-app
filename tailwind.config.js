@@ -7,11 +7,10 @@ export default {
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
-    colors:{
-      brand:{
-        green:{"100":"#038b3f"}
-
-      }
+    colors: {
+      brand: {
+        green: { 100: "#038b3f" },
+      },
     },
     extend: {},
   },
