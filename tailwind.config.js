@@ -9,7 +9,7 @@ export default {
   theme: {
     colors: {
       brand: {
-        green: { 100: "#038b3f" },
+        green: { 100: "#038b3f",200:'#32a852' },
       },
     },
     extend: {},
