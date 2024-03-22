@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 // components
 import InputText from "@Components/InputText";
-
+import Button from "@Components/Button"
 //other
 import { LoginForm } from "@Types/index";
 import Logo from "@Assets/images/wong_logo.jpg";
+import * as Url from '@Constants/url'
 function Login() {
   const {
     register,
@@ -13,8 +15,12 @@ function Login() {
   } = useForm<LoginForm>({
     // resolver: zodResolver(QrUrlSchema),
   });
-
-  function save() {}
+const navigate = useNavigate()
+  function save(data:LoginForm) {
+    console.log(data)
+    
+    navigate(Url.URL_HOME)
+  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
@@ -58,12 +64,10 @@ function Login() {
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
-              <button
-                type="submit"
-                className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
-              >
-                Sign in
-              </button>
+              <Button color="green">
+                Ingresar
+              </Button>
+
             </form>
           </div>
         </div>

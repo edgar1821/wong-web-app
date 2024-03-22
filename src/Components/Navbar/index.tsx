@@ -8,7 +8,7 @@ function NavbarWong() {
       <Navbar.Brand href="/">
         <img
           src={WongLog}
-          className="mr-3 h-10"
+          className="mr-3 h-10 md:h-16"
           alt="Flowbite React Logo"
         />
       </Navbar.Brand>
