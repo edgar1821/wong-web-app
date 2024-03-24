@@ -4,12 +4,14 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineDocumentScanner, MdFactory } from "react-icons/md";
 
 import SidebarTheme from "./sidebarTheme";
+import * as Url from "@Constants/url";
+
 function SidebarApp() {
   return (
     <Sidebar theme={SidebarTheme}>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiShoppingBag}>
+          <Sidebar.Item href={Url.URL_PRODUCTS} icon={HiShoppingBag}>
             Productos
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={FaUserDoctor}>
