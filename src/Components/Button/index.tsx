@@ -1,25 +1,23 @@
-import {ButtonHTMLAttributes} from 'react'
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-children: React.ReactNode;
-  color: 'green'
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  color?: "green";
 }
-function Button({
-  children,
-}: ButtonProps) {
-    //``
-    
+function Button({ children }: ButtonProps) {
+  //``
+
   return (
     <button
       type="submit"
-      className={`bg-brand-green-100
-            hover:bg-primary-700 
+      className={`hover:bg-primary-700
             focus:ring-primary-300 
             dark:bg-primary-600 
             dark:hover:bg-primary-700 
             dark:focus:ring-primary-800 
             w-full 
             rounded-lg 
+            bg-brand-green-100 
             px-5 
             py-2.5 
             text-center 
