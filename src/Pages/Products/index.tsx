@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TableColumn } from "react-data-table-component";
 import Layout from "@Components/Layout";
 import { DataRow } from "@Types/datatable";
@@ -5,6 +6,7 @@ import { DataRow } from "@Types/datatable";
 import Datatable from "@Components/Datatable";
 import Link from "@Components/ButtonLink";
 import PageTitle from "@Components/PageTitle";
+import ProductModal from "./ProductModal";
 const columns: TableColumn<DataRow>[] = [
   {
     name: "Id",
@@ -42,22 +44,30 @@ const data: Array<DataRow> = [
   },
 ];
 function Products() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
   function handleClickAdd(): void {
-    console.log("click");
+    setOpenModal(true);
   }
   return (
-    <Layout title="pagina">
-      <PageTitle>Productos</PageTitle>
-      <div className="overscroll-auto">
-        <Datatable
-          title="Produtos"
-          columns={columns}
-          data={data}
-          addActionText="Nuevo producto"
-          onClick={handleClickAdd}
-        />
-      </div>
-    </Layout>
+    <>
+      <Layout title="pagina">
+        <PageTitle>Productos</PageTitle>
+        <div className="overscroll-auto">
+          <Datatable
+            title="Produtos"
+            columns={columns}
+            data={data}
+            addActionText="Nuevo producto"
+            onClick={handleClickAdd}
+          />
+        </div>
+      </Layout>
+      <ProductModal openModal={openModal} onCloseModal={closeModal} />
+    </>
   );
 }
 
