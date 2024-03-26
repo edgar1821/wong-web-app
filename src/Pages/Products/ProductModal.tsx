@@ -30,7 +30,7 @@ function ProductModal({ openModal, onCloseModal }: ProductModalProps) {
             <PageTitle>Nuevo Producto</PageTitle>
             <form onSubmit={handleSubmit(save)}>
               <InputText
-                name="email"
+                name="name"
                 type="text"
                 label="Tu email:"
                 placeholder="ejemplo@email.com"
