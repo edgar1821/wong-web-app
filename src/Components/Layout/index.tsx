@@ -19,7 +19,7 @@ function Layout({ children, title = "Ortopedia wong" }: LayoutProps) {
         <div className="hidden md:block">
           <Sidebar />
         </div>
-        <div className="p-5 md:p-10">{children}</div>
+        <div className="w-full p-5 md:px-10">{children}</div>
       </div>
       <Footer />
     </div>

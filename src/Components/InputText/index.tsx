@@ -24,7 +24,7 @@ const InputText = forwardRef(
       register,
     } = props;
     return (
-      <div>
+      <div className="mb-3">
         <label
           htmlFor={name}
           className="
@@ -32,9 +32,10 @@ const InputText = forwardRef(
           flex 
           flex-col 
           text-sm 
-          font-medium 
-          text-gray-900 
-          dark:text-white"
+          font-bold 
+          text-brand-green-100
+          dark:text-white
+          md:text-lg"
         >
           {label}
           <input

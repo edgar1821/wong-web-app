@@ -1,72 +1,67 @@
 import { useState } from "react";
-import { TableColumn } from "react-data-table-component";
-import Layout from "@Components/Layout";
-import { DataRow } from "@Types/datatable";
+
+import { OperationAction, Product } from "@Types/index";
 // components
+import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
-import Link from "@Components/ButtonLink";
+
 import PageTitle from "@Components/PageTitle";
 import ProductModal from "./ProductModal";
-const columns: TableColumn<DataRow>[] = [
-  {
-    name: "Id",
-    selector: (row: DataRow) => row.id,
-    sortable: true,
-    omit: true,
-  },
-  {
-    name: "Nombre",
-    selector: (row: DataRow) => row.name,
-    sortable: true,
-  },
-  {
-    name: "Acciones",
-    cell: (row: DataRow) => (
-      <div className="flex">
-        <Link href={`/editar/${row.id}`}>Editar</Link>
-        <Link color="red" href={`/eliminar/${row.id}`}>
-          Eliminar
-        </Link>
-      </div>
-    ),
-    sortable: false,
-  },
-];
+import Columns from "./datatableColumns";
 
-const data: Array<DataRow> = [
+const data: Array<Product> = [
   {
     id: 1,
     name: "Zapato ortopedico",
+    description: "algo",
   },
   {
     id: 2,
     name: "Silla de rueda",
+    description: "algo",
   },
 ];
 function Products() {
   const [openModal, setOpenModal] = useState(false);
+  const [action, setAction] = useState<OperationAction>("create");
 
   const closeModal = () => {
     setOpenModal(false);
   };
   function handleClickAdd(): void {
+    setAction("create");
     setOpenModal(true);
+  }
+  function handleClickActionRow(
+    accion: OperationAction,
+    item: Product,
+  ) {
+    console.log(accion);
+    console.log(item);
+    if (accion === "edit") {
+      setAction("edit");
+      setOpenModal(true);
+    }
   }
   return (
     <>
       <Layout title="pagina">
         <PageTitle>Productos</PageTitle>
-        <div className="overscroll-auto">
+        <div className="overscroll-auto md:w-7/12">
           <Datatable
             title="Produtos"
-            columns={columns}
+            columns={Columns({ onClick: handleClickActionRow })}
             data={data}
             addActionText="Nuevo producto"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <ProductModal openModal={openModal} onCloseModal={closeModal} />
+      <ProductModal
+        openModal={openModal}
+        onCloseModal={closeModal}
+        acction={action}
+      />
     </>
   );
 }
