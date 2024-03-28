@@ -14,7 +14,7 @@ function SidebarApp() {
           <Sidebar.Item href={Url.URL_PRODUCTS} icon={HiShoppingBag}>
             Productos
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaUserDoctor}>
+          <Sidebar.Item href={Url.URL_DOCTORS} icon={FaUserDoctor}>
             Doctores
           </Sidebar.Item>
         </Sidebar.ItemGroup>

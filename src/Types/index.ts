@@ -9,5 +9,17 @@ export interface Product {
   description: string;
 }
 
+export interface Doctor {
+  id?: number;
+  name: string;
+}
+
 // suport
 export type OperationAction = "edit" | "create" | "delete";
+
+// components
+export interface ModalProps {
+  openModal: boolean;
+  onCloseModal: () => void;
+  acction: OperationAction;
+}
