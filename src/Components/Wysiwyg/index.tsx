@@ -17,7 +17,7 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({
   const { control } = useFormContext();
 
   return (
-    <div className="mb-3 flex flex-col">
+    <div className="mb-3 flex h-full flex-col">
       <span
         className="mb-2 
           flex 
