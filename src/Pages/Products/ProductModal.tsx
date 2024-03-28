@@ -46,7 +46,6 @@ function ProductModal({
                 label="Producto"
                 placeholder="Zapatos"
                 errors={methods.formState.errors}
-                register={methods.register}
               />
               <Wysiwyg
                 name="richTextContent"
