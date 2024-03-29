@@ -19,8 +19,11 @@ function SidebarApp() {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={MdOutlineDocumentScanner}>
-            Proformas
+          <Sidebar.Item
+            href={Url.URL_COTIZACION}
+            icon={MdOutlineDocumentScanner}
+          >
+            Cotización
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={MdFactory}>
             Ordenes de trabajo

@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import { Cotizacion, OperationAction, Product } from "@Types/index";
+import { Cotizacion, OperationAction } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-// import ProductModal from "./ProductModal";
-// import Columns from "./datatableColumns";
+import CortizacionModal from "./CotizacionModal";
+import Columns from "./dtaCotizacioncolumns";
 
 const data: Array<Cotizacion> = [
   {
@@ -41,7 +41,7 @@ const data: Array<Cotizacion> = [
     },
   },
 ];
-function Cotizacion() {
+function PageCotizacion() {
   const [openModal, setOpenModal] = useState(false);
   const [action, setAction] = useState<OperationAction>("create");
 
@@ -54,7 +54,7 @@ function Cotizacion() {
   }
   function handleClickActionRow(
     accion: OperationAction,
-    item: Product,
+    item: Cotizacion,
   ) {
     console.log(accion);
     console.log(item);
@@ -65,19 +65,19 @@ function Cotizacion() {
   }
   return (
     <>
-      <Layout title="pagina">
-        <PageTitle>Productos</PageTitle>
+      <Layout title="Cotización">
+        <PageTitle>Cortizacion</PageTitle>
         <div className="overscroll-auto md:w-7/12">
           <Datatable
             title="Produtos"
             columns={Columns({ onClick: handleClickActionRow })}
             data={data}
-            addActionText="Nuevo producto"
+            addActionText="Nueva Cotización"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <ProductModal
+      <CortizacionModal
         openModal={openModal}
         onCloseModal={closeModal}
         acction={action}
@@ -86,4 +86,4 @@ function Cotizacion() {
   );
 }
 
-export default Cotizacion;
+export default PageCotizacion;
