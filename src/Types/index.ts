@@ -14,6 +14,14 @@ export interface Doctor {
   name: string;
 }
 
+export interface Cotizacion {
+  id?: number;
+  clienteRuc: string;
+  paciente: string;
+  medico: Doctor;
+  fechaEmision: Date;
+  producto: Product;
+}
 // suport
 export type OperationAction = "edit" | "create" | "delete";
 
