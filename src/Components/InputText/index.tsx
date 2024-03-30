@@ -46,7 +46,8 @@ function InputText(props: InputProps) {
               className="
                   focus:ring-primary-600 
                   block
-                  w-full rounded-lg 
+                  w-full 
+                  rounded-lg 
                   border 
                   border-gray-300 
                   bg-gray-50 

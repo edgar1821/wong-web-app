@@ -3,6 +3,8 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
+import Select from "@Components/Select";
+import DatePicker from "@Components/Datepicker";
 import { Cotizacion, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
 
@@ -22,7 +24,7 @@ function CotizacionModal({
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
       <Modal.Header />
       <Modal.Body>
-        <div className="h-auto w-auto">
+        <div className="min-h-96 w-auto">
           {acction === "create" && (
             <PageTitle>Nueva Cotizacion</PageTitle>
           )}
@@ -35,14 +37,33 @@ function CotizacionModal({
               onSubmit={methods.handleSubmit(save)}
               className="flex flex-col"
             >
+              <input type="hidden" {...methods.register("id")} />
               <InputText
-                name="name"
+                name="clienteRuc"
                 type="text"
-                label="Doctor"
-                placeholder="Zapatos"
+                label="Ruc del cliente (*)"
+                placeholder=""
                 errors={methods.formState.errors}
               />
-
+              <InputText
+                name="paciente"
+                type="text"
+                label="Paciente"
+                placeholder=""
+                errors={methods.formState.errors}
+              />
+              <DatePicker
+                name="fechaEmision"
+                label="Fecha de emisión:"
+              />
+              <Select
+                label="Producto"
+                name="productos"
+                options={[
+                  { value: "red", label: "rojo" },
+                  { value: "verde", label: "verde" },
+                ]}
+              />
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>
