@@ -13,7 +13,14 @@ export interface Doctor {
   id?: number;
   name: string;
 }
-
+export interface User {
+  id?: number;
+  name: string;
+  lastName: string;
+  rol: number;
+  email: string;
+  password: string;
+}
 export interface Cotizacion {
   id?: number;
   clienteRuc: string;

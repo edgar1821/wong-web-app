@@ -5,6 +5,8 @@ import Home from "./Pages/Home";
 import Products from "@Pages/Products";
 import Doctors from "@Pages/Doctors";
 import Cotizacion from "@Pages/Cotizacion";
+import UsersPage from "@Pages/Users";
+
 // constants
 import * as Url from "./Constants/url";
 function AppRoutes() {
@@ -28,6 +30,10 @@ function AppRoutes() {
     {
       path: Url.URL_COTIZACION,
       element: <Cotizacion />,
+    },
+    {
+      path: Url.URL_USERS,
+      element: <UsersPage />,
     },
   ]);
   return AppRoutes;

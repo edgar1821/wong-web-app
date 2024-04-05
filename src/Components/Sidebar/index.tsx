@@ -30,7 +30,7 @@ function SidebarApp() {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiUser}>
+          <Sidebar.Item href={Url.URL_USERS} icon={HiUser}>
             Usuarios
           </Sidebar.Item>
         </Sidebar.ItemGroup>
