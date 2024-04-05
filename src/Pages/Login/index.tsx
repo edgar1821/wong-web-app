@@ -1,25 +1,21 @@
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // components
 import InputText from "@Components/InputText";
-import Button from "@Components/Button"
+import Button from "@Components/Button";
 //other
 import { LoginForm } from "@Types/index";
 import Logo from "@Assets/images/wong_logo.jpg";
-import * as Url from '@Constants/url'
+import * as Url from "@Constants/url";
 function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginForm>({
+  const methods = useForm<LoginForm>({
     // resolver: zodResolver(QrUrlSchema),
   });
-const navigate = useNavigate()
-  function save(data:LoginForm) {
-    console.log(data)
-    
-    navigate(Url.URL_HOME)
+  const navigate = useNavigate();
+  function save(data: LoginForm) {
+    console.log(data);
+
+    navigate(Url.URL_HOME);
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -35,40 +31,37 @@ const navigate = useNavigate()
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
               Inicia sesión
             </h1>
-            <form
-              className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(save)}
-            >
-              <InputText
-                name="email"
-                type="text"
-                label="Tu email:"
-                placeholder="ejemplo@email.com"
-                errors={errors}
-                register={register}
-              />
-              <InputText
-                name="password"
-                type="password"
-                label="Password:"
-                placeholder="••••••••"
-                errors={errors}
-                register={register}
-              />
+            <FormProvider {...methods}>
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={methods.handleSubmit(save)}
+              >
+                <InputText
+                  name="email"
+                  type="text"
+                  label="Tu email:"
+                  placeholder="ejemplo@email.com"
+                  errors={methods.formState.errors}
+                />
+                <InputText
+                  name="password"
+                  type="password"
+                  label="Password:"
+                  placeholder="••••••••"
+                  errors={methods.formState.errors}
+                />
 
-              <div className="flex items-center justify-between">
-                <a
-                  href="#"
-                  className="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline"
-                >
-                  ¿Olvidaste tu contraseña?
-                </a>
-              </div>
-              <Button color="green">
-                Ingresar
-              </Button>
-
-            </form>
+                <div className="flex items-center justify-between">
+                  <a
+                    href="#"
+                    className="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline"
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </a>
+                </div>
+                <Button color="green">Ingresar</Button>
+              </form>
+            </FormProvider>
           </div>
         </div>
       </div>

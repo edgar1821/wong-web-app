@@ -1,27 +1,47 @@
 import { useState } from "react";
 
-import { OperationAction, Product } from "@Types/index";
+import { Cotizacion, OperationAction } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-import ProductModal from "./ProductModal";
-import Columns from "./datatableColumns";
+import CortizacionModal from "./CotizacionModal";
+import Columns from "./dtaCotizacioncolumns";
 
-const data: Array<Product> = [
+const data: Array<Cotizacion> = [
   {
     id: 1,
-    name: "Zapato ortopedico",
-    description: "algo",
+    clienteRuc: "10882736140404",
+    paciente: "Juan",
+    medico: {
+      id: 1000,
+      name: "Aurelio Gambirazio",
+    },
+    fechaEmision: new Date(),
+    producto: {
+      id: 1,
+      name: "zapato",
+      description: "muy grande",
+    },
   },
   {
     id: 2,
-    name: "Silla de rueda",
-    description: "algo",
+    clienteRuc: "1088273616812",
+    paciente: "Juanpedro",
+    medico: {
+      id: 200,
+      name: "Perez alvela",
+    },
+    fechaEmision: new Date(),
+    producto: {
+      id: 1,
+      name: "zapato",
+      description: "muy grande",
+    },
   },
 ];
-function Products() {
+function PageCotizacion() {
   const [openModal, setOpenModal] = useState(false);
   const [action, setAction] = useState<OperationAction>("create");
 
@@ -34,7 +54,7 @@ function Products() {
   }
   function handleClickActionRow(
     accion: OperationAction,
-    item: Product,
+    item: Cotizacion,
   ) {
     console.log(accion);
     console.log(item);
@@ -45,19 +65,19 @@ function Products() {
   }
   return (
     <>
-      <Layout title="pagina">
-        <PageTitle>Productos</PageTitle>
+      <Layout title="Cotización">
+        <PageTitle>Cortizacion</PageTitle>
         <div className="overscroll-auto md:w-7/12">
           <Datatable
             title="Produtos"
             columns={Columns({ onClick: handleClickActionRow })}
             data={data}
-            addActionText="Nuevo producto"
+            addActionText="Nueva Cotización"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <ProductModal
+      <CortizacionModal
         openModal={openModal}
         onCloseModal={closeModal}
         acction={action}
@@ -66,4 +86,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default PageCotizacion;

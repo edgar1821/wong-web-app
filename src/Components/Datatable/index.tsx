@@ -2,7 +2,6 @@
 import ReactDatatable, {
   TableColumn,
 } from "react-data-table-component";
-import { DataRow } from "@Types/datatable";
 import { Button } from "flowbite-react";
 const paginationComponentOptions = {
   rowsPerPageText: "Filas por página",
@@ -22,7 +21,7 @@ const customStyles = {
 };
 interface DatatableProps {
   title: string;
-  columns: Array<TableColumn<DataRow>>;
+  columns: Array<TableColumn<any>>;
   data: Array<any>;
   addActionText?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

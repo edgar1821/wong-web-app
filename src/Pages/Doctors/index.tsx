@@ -1,27 +1,23 @@
 import { useState } from "react";
-
-import { OperationAction, Product } from "@Types/index";
-// components
+import { Doctor, OperationAction } from "@Types/index";
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
-
 import PageTitle from "@Components/PageTitle";
-import ProductModal from "./ProductModal";
+import DoctorModal from "./DoctorModal";
 import Columns from "./datatableColumns";
 
-const data: Array<Product> = [
+const data: Array<Doctor> = [
   {
     id: 1,
-    name: "Zapato ortopedico",
-    description: "algo",
+    name: "Juan Cabrera",
   },
   {
     id: 2,
-    name: "Silla de rueda",
-    description: "algo",
+    name: "Aurelio Gambirazio",
   },
 ];
-function Products() {
+
+function DoctorPage() {
   const [openModal, setOpenModal] = useState(false);
   const [action, setAction] = useState<OperationAction>("create");
 
@@ -34,7 +30,7 @@ function Products() {
   }
   function handleClickActionRow(
     accion: OperationAction,
-    item: Product,
+    item: Doctor,
   ) {
     console.log(accion);
     console.log(item);
@@ -43,21 +39,22 @@ function Products() {
       setOpenModal(true);
     }
   }
+
   return (
     <>
-      <Layout title="pagina">
-        <PageTitle>Productos</PageTitle>
+      <Layout title="Doctores">
+        <PageTitle>Doctores</PageTitle>
         <div className="overscroll-auto md:w-7/12">
           <Datatable
-            title="Produtos"
+            title="Doctores"
             columns={Columns({ onClick: handleClickActionRow })}
             data={data}
-            addActionText="Nuevo producto"
+            addActionText="Nuevo Doctor"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <ProductModal
+      <DoctorModal
         openModal={openModal}
         onCloseModal={closeModal}
         acction={action}
@@ -66,4 +63,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default DoctorPage;

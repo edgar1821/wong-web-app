@@ -3,22 +3,17 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
-import Wysiwyg from "@Components/Wysiwyg";
-import { OperationAction, Product } from "@Types/index";
+import { Doctor, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
-interface ProductModalProps {
-  openModal: boolean;
-  onCloseModal: () => void;
-  acction: OperationAction;
-}
+
 function ProductModal({
   openModal,
   onCloseModal,
   acction,
-}: ProductModalProps) {
-  const methods = useForm<Product>();
+}: ModalProps) {
+  const methods = useForm<Doctor>();
 
-  function save(data: Product) {
+  function save(data: Doctor) {
     console.log("dataa", data);
   }
 
@@ -28,11 +23,9 @@ function ProductModal({
       <Modal.Header />
       <Modal.Body>
         <div className="h-auto w-auto">
-          {acction === "create" && (
-            <PageTitle>Nuevo Producto</PageTitle>
-          )}
+          {acction === "create" && <PageTitle>Nuevo Doctor</PageTitle>}
           {acction === "edit" && (
-            <PageTitle>Modificar Producto</PageTitle>
+            <PageTitle>Modificar Doctor</PageTitle>
           )}
 
           <FormProvider {...methods}>
@@ -43,15 +36,11 @@ function ProductModal({
               <InputText
                 name="name"
                 type="text"
-                label="Producto"
+                label="Doctor"
                 placeholder="Zapatos"
                 errors={methods.formState.errors}
               />
-              <Wysiwyg
-                name="richTextContent"
-                disable={false}
-                label="Descripción"
-              />
+
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>

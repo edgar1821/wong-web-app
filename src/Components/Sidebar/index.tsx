@@ -14,20 +14,23 @@ function SidebarApp() {
           <Sidebar.Item href={Url.URL_PRODUCTS} icon={HiShoppingBag}>
             Productos
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaUserDoctor}>
+          <Sidebar.Item href={Url.URL_DOCTORS} icon={FaUserDoctor}>
             Doctores
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={MdOutlineDocumentScanner}>
-            Proformas
+          <Sidebar.Item
+            href={Url.URL_COTIZACION}
+            icon={MdOutlineDocumentScanner}
+          >
+            Cotización
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={MdFactory}>
             Ordenes de trabajo
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiUser}>
+          <Sidebar.Item href={Url.URL_USERS} icon={HiUser}>
             Usuarios
           </Sidebar.Item>
         </Sidebar.ItemGroup>
