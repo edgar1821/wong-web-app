@@ -38,7 +38,7 @@ function ProductModal({
               <InputText
                 name="name"
                 type="text"
-                label="Nombre"
+                label="Nombres:"
                 errors={methods.formState.errors}
               />
               <InputText

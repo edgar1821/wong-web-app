@@ -5,7 +5,6 @@ function Home() {
     <Layout>
       <>
         <h1>asdadasd</h1>
-        {/* <Datatable /> */}
       </>
     </Layout>
   );

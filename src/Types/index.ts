@@ -20,6 +20,7 @@ export interface User {
   rol: number;
   email: string;
   password: string;
+  passwordVerified: string;
 }
 export interface Cotizacion {
   id?: number;

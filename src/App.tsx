@@ -6,7 +6,9 @@ import Products from "@Pages/Products";
 import Doctors from "@Pages/Doctors";
 import Cotizacion from "@Pages/Cotizacion";
 import UsersPage from "@Pages/Users";
-
+// profile pages
+import MyProfile from "@Pages/MyProfile";
+import ChangePassword from "@Pages/ChangePassword";
 // constants
 import * as Url from "./Constants/url";
 function AppRoutes() {
@@ -34,6 +36,16 @@ function AppRoutes() {
     {
       path: Url.URL_USERS,
       element: <UsersPage />,
+    },
+
+    //profile pages
+    {
+      path: Url.URL_MY_PROFILE,
+      element: <MyProfile />,
+    },
+    {
+      path: Url.URL_CHANGE_PASSWORD,
+      element: <ChangePassword />,
     },
   ]);
   return AppRoutes;

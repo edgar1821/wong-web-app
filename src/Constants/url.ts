@@ -11,3 +11,8 @@ export const URL_WORK_ORDER: string = "/orden-trabajo";
 
 // users
 export const URL_USERS: string = "/usuarios";
+
+//profile
+export const URL_MY_PROFILE: string = "/mi-perfil";
+export const URL_CHANGE_PASSWORD: string =
+  "/mi-perfil/cambio-password";
