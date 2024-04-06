@@ -5,7 +5,7 @@ import path from "path";
 // "https://edgar1821.github.io/wong-web-app",
 export default defineConfig({
   plugins: [react()],
-  base: "/",
+  base: "https://edgar1821.github.io/wong-web-app",
   define: {
     global: "window",
   },
