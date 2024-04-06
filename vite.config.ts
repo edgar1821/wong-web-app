@@ -5,7 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // base: "https://edgar1821.github.io/wong-web-app",
+  base: "https://edgar1821.github.io/wong-web-app",
   define: {
     global: "window",
   },
