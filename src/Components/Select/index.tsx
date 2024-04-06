@@ -62,13 +62,7 @@ const SelectInput: React.FC<SelectProps> = ({
         control={control}
         defaultValue={defaultValue ?? ""}
         render={({ field }) => (
-          <Select
-            {...field}
-            options={options}
-            onChange={(value) => field.onChange(value)}
-            onBlur={() => field.onBlur(field.value)}
-            styles={customStyles}
-          />
+          <Select {...field} options={options} styles={customStyles} />
         )}
       />
     </div>

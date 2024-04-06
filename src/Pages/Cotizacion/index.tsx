@@ -6,7 +6,7 @@ import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-import CortizacionModal from "./CotizacionModal";
+import CortizacionModal from "./cotizacionModal";
 import Columns from "./dtaCotizacioncolumns";
 
 const data: Array<Cotizacion> = [
