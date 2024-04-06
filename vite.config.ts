@@ -2,10 +2,10 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-// https://vitejs.dev/config/
+// "https://edgar1821.github.io/wong-web-app",
 export default defineConfig({
   plugins: [react()],
-  base: "https://edgar1821.github.io/wong-web-app",
+  base: "/",
   define: {
     global: "window",
   },
