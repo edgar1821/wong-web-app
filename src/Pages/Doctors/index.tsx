@@ -8,11 +8,11 @@ import Columns from "./datatableColumns";
 
 const data: Array<Doctor> = [
   {
-    id: 1,
+    idDoctor: 1,
     name: "Juan Cabrera",
   },
   {
-    id: 2,
+    idDoctor: 2,
     name: "Aurelio Gambirazio",
   },
 ];

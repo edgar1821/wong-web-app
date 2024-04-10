@@ -12,7 +12,7 @@ function Columns({
   const columns: TableColumn<Cotizacion>[] = [
     {
       name: "Id",
-      selector: (row: Cotizacion) => row.id!,
+      selector: (row: Cotizacion) => row.idCotizacion!,
       sortable: true,
       omit: true,
     },

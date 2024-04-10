@@ -11,33 +11,37 @@ import Columns from "./dtaCotizacioncolumns";
 
 const data: Array<Cotizacion> = [
   {
-    id: 1,
+    idCotizacion: 1,
     clienteRuc: "10882736140404",
     paciente: "Juan",
     medico: {
-      id: 1000,
+      idDoctor: 1000,
       name: "Aurelio Gambirazio",
     },
     fechaEmision: new Date(),
     producto: {
-      id: 1,
+      idProduct: 1,
       name: "zapato",
       description: "muy grande",
+      price: 0,
+      idTypeCurrency: 0,
     },
   },
   {
-    id: 2,
+    idCotizacion: 2,
     clienteRuc: "1088273616812",
     paciente: "Juanpedro",
     medico: {
-      id: 200,
+      idDoctor: 200,
       name: "Perez alvela",
     },
     fechaEmision: new Date(),
     producto: {
-      id: 1,
+      idProduct: 1,
       name: "zapato",
       description: "muy grande",
+      price: 0,
+      idTypeCurrency: 0,
     },
   },
 ];

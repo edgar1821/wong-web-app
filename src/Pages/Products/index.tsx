@@ -11,14 +11,18 @@ import Columns from "./datatableColumns";
 
 const data: Array<Product> = [
   {
-    id: 1,
+    idProduct: 1,
     name: "Zapato ortopedico",
     description: "algo",
+    price: 200,
+    idTypeCurrency: 1,
   },
   {
-    id: 2,
+    idProduct: 2,
     name: "Silla de rueda",
     description: "algo",
+    price: 400,
+    idTypeCurrency: 2,
   },
 ];
 function Products() {

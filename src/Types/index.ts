@@ -3,18 +3,28 @@ export interface LoginForm {
   password: string;
 }
 
+export interface TypeCurrency {
+  idTypeCurrency: number;
+  TypeCurrecy: string;
+}
 export interface Product {
-  id?: number;
+  idProduct?: number;
   name: string;
+  price: number;
+  idTypeCurrency: number;
   description: string;
 }
 
 export interface Doctor {
-  id?: number;
+  idDoctor?: number;
   name: string;
+  intitution: string;
+  phone?: string;
+  email?: string;
+  speciallity: string;
 }
 export interface User {
-  id?: number;
+  idUser?: number;
   name: string;
   lastName: string;
   rol: number;
@@ -23,7 +33,7 @@ export interface User {
   passwordVerified: string;
 }
 export interface Cotizacion {
-  id?: number;
+  idCotizacion?: number;
   clienteRuc: string;
   paciente: string;
   medico: Doctor;

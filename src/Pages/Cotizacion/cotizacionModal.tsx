@@ -37,7 +37,10 @@ function CotizacionModal({
               onSubmit={methods.handleSubmit(save)}
               className="flex flex-col"
             >
-              <input type="hidden" {...methods.register("id")} />
+              <input
+                type="hidden"
+                {...methods.register("idCotizacion")}
+              />
               <InputText
                 name="clienteRuc"
                 type="text"
