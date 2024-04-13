@@ -5,7 +5,7 @@ import Footer from "../Footer";
 import Sidebar from "../Sidebar";
 import SidebarProfile from "../SidebarProfile";
 
-import { URL_CHANGE_PASSWORD, URL_MY_PROFILE } from "@Constants/url";
+import { URLS } from "@Constants/url";
 interface LayoutProps {
   children: React.ReactNode;
   title?: string;
@@ -17,8 +17,8 @@ function Layout({ children, title = "Ortopedia wong" }: LayoutProps) {
   const documentTitle = useMemo(() => title, [title]);
   const isProfileSidebar = useMemo(
     () =>
-      location.pathname === URL_MY_PROFILE ||
-      location.pathname === URL_CHANGE_PASSWORD,
+      location.pathname === URLS.URL_MY_PROFILE ||
+      location.pathname === URLS.URL_CHANGE_PASSWORD,
     [location.pathname],
   );
   document.title = documentTitle;

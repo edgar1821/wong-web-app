@@ -6,7 +6,7 @@ import Button from "@Components/Button";
 //other
 import { LoginForm } from "@Types/index";
 import Logo from "@Assets/images/wong_logo.jpg";
-import * as Url from "@Constants/url";
+import { URLS } from "@Constants/url";
 function Login() {
   const methods = useForm<LoginForm>({
     // resolver: zodResolver(QrUrlSchema),
@@ -15,7 +15,7 @@ function Login() {
   function save(data: LoginForm) {
     console.log(data);
 
-    navigate(Url.URL_HOME);
+    navigate(URLS.URL_HOME);
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

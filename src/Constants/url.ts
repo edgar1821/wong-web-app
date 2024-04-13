@@ -1,18 +1,19 @@
-export const URL_LOGIN: string = "/";
-export const URL_HOME: string = "/inicio";
-// mantenimiento
-export const URL_PRODUCTS: string = "/productos";
-export const URL_DOCTORS: string = "/doctores";
-export const URL_COTIZACION: string = "/cotizacion";
+export enum URLS {
+  URL_LOGIN = "/",
+  URL_HOME = "/inicio",
+  // mantenimiento
+  URL_PRODUCTS = "/productos",
+  URL_DOCTORS = "/doctores",
+  URL_COTIZACION = "/cotizacion",
 
-// core
-export const URL_PROFORMA: string = "/proforma";
-export const URL_WORK_ORDER: string = "/orden-trabajo";
+  // core
+  URL_PROFORMA = "/proforma",
+  URL_WORK_ORDER = "/orden-trabajo",
 
-// users
-export const URL_USERS: string = "/usuarios";
+  // users
+  URL_USERS = "/usuarios",
 
-//profile
-export const URL_MY_PROFILE: string = "/mi-perfil";
-export const URL_CHANGE_PASSWORD: string =
-  "/mi-perfil/cambio-password";
+  //profile
+  URL_MY_PROFILE = "/mi-perfil",
+  URL_CHANGE_PASSWORD = "/mi-perfil/cambio-password",
+}

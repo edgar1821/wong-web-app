@@ -1,7 +1,7 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import WongLog from "../../assets/images/wong_logo.jpg";
 import Navbarthemen from "./theme";
-import { URL_MY_PROFILE } from "@Constants/url";
+import { URLS } from "@Constants/url";
 
 function NavbarWong() {
   return (
@@ -31,7 +31,7 @@ function NavbarWong() {
               juan@ortopediawong.com
             </span>
           </Dropdown.Header>
-          <Dropdown.Item as="a" href={URL_MY_PROFILE}>
+          <Dropdown.Item as="a" href={URLS.URL_MY_PROFILE}>
             Mi perfil
           </Dropdown.Item>
 
