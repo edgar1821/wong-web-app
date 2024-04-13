@@ -11,14 +11,18 @@ import Columns from "./dtaCotizacioncolumns";
 
 const data: Array<Cotizacion> = [
   {
+    idTipoDocumento: 1,
     idCotizacion: 1,
-    clienteRuc: "10882736140404",
-    paciente: "Juan",
+    nroDocumento: 87654321,
+
+    nombrePaciente: "Juan",
+    apellidoPaciente: "hernandez",
     medico: {
       idDoctor: 1000,
       name: "Aurelio Gambirazio",
     },
-    fechaEmision: new Date(),
+    fechaEmision: "10/10/2023",
+    fechaCaducidad: "20/10/2023",
     producto: {
       idProduct: 1,
       name: "zapato",
@@ -26,16 +30,20 @@ const data: Array<Cotizacion> = [
       price: 0,
       idTypeCurrency: 0,
     },
+    idMedico: 0,
   },
   {
+    idTipoDocumento: 1,
+    nroDocumento: 87654321,
     idCotizacion: 2,
-    clienteRuc: "1088273616812",
-    paciente: "Juanpedro",
+    nombrePaciente: "Juan pedro",
+    apellidoPaciente: "Marquez Vidal",
     medico: {
       idDoctor: 200,
       name: "Perez alvela",
     },
-    fechaEmision: new Date(),
+    fechaEmision: "10/10/2023",
+    fechaCaducidad: "20/10/2023",
     producto: {
       idProduct: 1,
       name: "zapato",
@@ -43,6 +51,7 @@ const data: Array<Cotizacion> = [
       price: 0,
       idTypeCurrency: 0,
     },
+    idMedico: 0,
   },
 ];
 function PageCotizacion() {

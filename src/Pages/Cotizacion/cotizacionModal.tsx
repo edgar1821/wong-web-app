@@ -8,12 +8,20 @@ import DatePicker from "@Components/Datepicker";
 import { Cotizacion, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
 
+//helpers
+import { getDates } from "../../helpers";
+
 function CotizacionModal({
   openModal,
   onCloseModal,
   acction,
 }: ModalProps) {
-  const methods = useForm<Cotizacion>();
+  const methods = useForm<Cotizacion>({
+    defaultValues: {
+      fechaEmision: getDates(),
+      fechaCaducidad: getDates(10),
+    },
+  });
 
   function save(data: Cotizacion) {
     console.log("dataa", data);
@@ -41,17 +49,33 @@ function CotizacionModal({
                 type="hidden"
                 {...methods.register("idCotizacion")}
               />
+              <Select
+                label="Tipo de documento:"
+                name="idTipoDocumento"
+                options={[
+                  { value: "1", label: "DNI" },
+                  { value: "2", label: "RUC" },
+                  { value: "3", label: "Carnet de extrangeria" },
+                ]}
+              />
               <InputText
-                name="clienteRuc"
+                name="nroDocumento"
                 type="text"
-                label="Ruc del cliente (*)"
+                label="Nro de documento:"
                 placeholder=""
                 errors={methods.formState.errors}
               />
               <InputText
-                name="paciente"
+                name="nombrePaciente"
                 type="text"
-                label="Paciente"
+                label="Nombres Paciente:"
+                placeholder=""
+                errors={methods.formState.errors}
+              />
+              <InputText
+                name="apellidoPaciente"
+                type="text"
+                label="Apellidos del Paciente:"
                 placeholder=""
                 errors={methods.formState.errors}
               />
@@ -59,12 +83,16 @@ function CotizacionModal({
                 name="fechaEmision"
                 label="Fecha de emisión:"
               />
+              <DatePicker
+                name="fechaCaducidad"
+                label="Fecha de emisión:"
+              />
               <Select
                 label="Producto"
                 name="productos"
                 options={[
-                  { value: "red", label: "rojo" },
-                  { value: "verde", label: "verde" },
+                  { value: "zapato", label: "Zapato" },
+                  { value: "silla", label: "Silla" },
                 ]}
               />
               <Button type="submit">Guardar</Button>

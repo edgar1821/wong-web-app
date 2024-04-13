@@ -17,13 +17,13 @@ function Columns({
       omit: true,
     },
     {
-      name: "Ruc Cliente",
-      selector: (row: Cotizacion) => row.clienteRuc,
+      name: "Nro de documento",
+      selector: (row: Cotizacion) => row.nroDocumento,
       sortable: true,
     },
     {
       name: "Paciente",
-      selector: (row: Cotizacion) => row.paciente,
+      selector: (row: Cotizacion) => row.nombrePaciente,
       sortable: true,
     },
     {

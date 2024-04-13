@@ -18,10 +18,10 @@ export interface Product {
 export interface Doctor {
   idDoctor?: number;
   name: string;
-  intitution: string;
+  intitution?: string;
   phone?: string;
   email?: string;
-  speciallity: string;
+  speciallity?: string;
 }
 export interface User {
   idUser?: number;
@@ -34,10 +34,14 @@ export interface User {
 }
 export interface Cotizacion {
   idCotizacion?: number;
-  clienteRuc: string;
-  paciente: string;
+  idTipoDocumento: number;
+  nroDocumento: number;
+  idMedico: number;
   medico: Doctor;
-  fechaEmision: Date;
+  nombrePaciente: string;
+  apellidoPaciente: string;
+  fechaEmision: string;
+  fechaCaducidad: string;
   producto: Product;
 }
 // suport
