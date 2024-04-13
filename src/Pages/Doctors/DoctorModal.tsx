@@ -40,7 +40,32 @@ function ProductModal({
                 placeholder="Zapatos"
                 errors={methods.formState.errors}
               />
-
+              <InputText
+                name="intitution"
+                type="text"
+                label="Institucion:"
+                placeholder="Clinica Javier Prado"
+                errors={methods.formState.errors}
+              />
+              <InputText
+                name="speciallity"
+                type="text"
+                label="Especialidad:"
+                placeholder="Especialidad"
+                errors={methods.formState.errors}
+              />
+              <InputText
+                name="phone"
+                type="text"
+                label="Telefono:"
+                errors={methods.formState.errors}
+              />
+              <InputText
+                name="email"
+                type="text"
+                label="Email:"
+                errors={methods.formState.errors}
+              />
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>
