@@ -63,18 +63,10 @@ function InputText(props: InputProps) {
             />
           )}
         />
-        {/* <input
-            type={type}
-            name={name}
-            disabled={disabled}
-            placeholder={placeholder}
-            ref={ref}
-            {...register(name)}
-          /> */}
-        {errors && errors[name] && (
-          <ErrorInput message={errors[name].message} />
-        )}
       </label>
+      {errors && errors[name] && (
+        <ErrorInput message={errors[name].message} />
+      )}
     </div>
   );
 }

@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Select, { StylesConfig } from "react-select";
-import { useFormContext, Controller } from "react-hook-form";
-
-interface Option {
-  value: string;
-  label: string;
-}
+import {
+  useFormContext,
+  Controller,
+  FieldErrors,
+} from "react-hook-form";
+import ErrorInput from "@Components/ErrorInput";
+import { Option } from "@Types/index";
 
 interface SelectProps {
   name: string;
   options: Option[];
   defaultValue?: string | null;
   label: string;
+  errors?: FieldErrors | any;
 }
 
 const customStyles: StylesConfig = {
@@ -39,6 +42,7 @@ const SelectInput: React.FC<SelectProps> = ({
   options,
   defaultValue,
   label,
+  errors,
 }) => {
   const { control } = useFormContext();
 
@@ -62,9 +66,20 @@ const SelectInput: React.FC<SelectProps> = ({
         control={control}
         defaultValue={defaultValue ?? ""}
         render={({ field }) => (
-          <Select {...field} options={options} styles={customStyles} />
+          <Select
+            {...field}
+            styles={customStyles}
+            options={options}
+            onChange={(selectOption) =>
+              field.onChange(selectOption.value)
+            }
+            onBlur={field.onBlur}
+          />
         )}
       />
+      {errors && errors[name] && (
+        <ErrorInput message={errors[name].message} />
+      )}
     </div>
   );
 };

@@ -1,3 +1,8 @@
+export interface Option {
+  value: string;
+  label: string;
+}
+
 export interface LoginForm {
   email: string;
   password: string;
@@ -10,8 +15,8 @@ export interface TypeCurrency {
 export interface Product {
   idProduct?: number;
   name: string;
-  price: number;
-  idTypeCurrency: number;
+  price: string;
+  idTypeCurrency: string;
   description: string;
 }
 

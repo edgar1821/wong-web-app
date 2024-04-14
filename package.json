@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "deploy":"gh-pages -d dist",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
@@ -27,7 +27,8 @@
     "react-hook-form": "^7.51.1",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.22.3",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

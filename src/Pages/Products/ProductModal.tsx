@@ -1,13 +1,17 @@
 // import { useEffect } from "react";
 import { Modal } from "flowbite-react";
 import { useForm, FormProvider } from "react-hook-form";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
 import Wysiwyg from "@Components/Wysiwyg";
 import { OperationAction, Product } from "@Types/index";
 import Button from "@Components/Button";
 import SelectInput from "@Components/Select";
+// import Dropdown from "@Components/Dropdown";
+// helpers
+import ProductSchema from "./productSchema";
+
 interface ProductModalProps {
   openModal: boolean;
   onCloseModal: () => void;
@@ -18,17 +22,14 @@ function ProductModal({
   onCloseModal,
   acction,
 }: ProductModalProps) {
-  const methods = useForm<Product>();
+  const methods = useForm<Product>({
+    resolver: yupResolver(ProductSchema),
+  });
 
   function save(data: Product) {
     console.log("dataa", data);
   }
 
-  // useEffect(() => {
-  //   return () => {
-
-  //   };
-  // }, []);
   console.log(methods.watch());
   return (
     <Modal
@@ -58,18 +59,20 @@ function ProductModal({
               <InputText
                 name="name"
                 type="text"
-                label="Producto:"
+                label="Nombre del producto:"
                 placeholder="Zapatos"
                 errors={methods.formState.errors}
               />
               <SelectInput
                 label="Tipo de moneda:"
                 name="idTypeCurrency"
+                errors={methods.formState.errors}
                 options={[
                   { value: "1", label: "Soles" },
                   { value: "2", label: "Dolares" },
                 ]}
               />
+
               <InputText
                 name="price"
                 type="text"
@@ -77,9 +80,10 @@ function ProductModal({
                 errors={methods.formState.errors}
               />
               <Wysiwyg
-                name="richTextContent"
+                name="description"
                 disable={false}
                 label="Descripción"
+                errors={methods.formState.errors}
               />
               <Button type="submit">Guardar</Button>
             </form>
