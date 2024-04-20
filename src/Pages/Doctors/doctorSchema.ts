@@ -26,6 +26,16 @@ const DoctorSchema: zod.ZodSchema<Doctor> = zod.object({
         message: "Debe ser un valor numerico de 9 digitos",
       },
     ),
+  email: zod.string().refine(
+    (email) => {
+      // validacion no obligatoria de un email
+      if (email === "") return true;
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    },
+    {
+      message: "email no valido",
+    },
+  ),
 });
 
 export default DoctorSchema;
