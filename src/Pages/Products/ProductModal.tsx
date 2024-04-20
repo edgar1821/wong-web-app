@@ -8,7 +8,7 @@ import Wysiwyg from "@Components/Wysiwyg";
 import { OperationAction, Product } from "@Types/index";
 import Button from "@Components/Button";
 import SelectInput from "@Components/Select";
-// import Dropdown from "@Components/Dropdown";
+
 // helpers
 import ProductSchema from "./productSchema";
 

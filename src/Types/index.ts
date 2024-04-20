@@ -13,7 +13,7 @@ export interface TypeCurrency {
   TypeCurrecy: string;
 }
 export interface Product {
-  idProduct?: number;
+  idProduct?: string;
   name: string;
   price: string;
   idTypeCurrency: string;
@@ -21,12 +21,12 @@ export interface Product {
 }
 
 export interface Doctor {
-  idDoctor?: number;
-  name: string;
-  intitution?: string;
-  phone?: string;
+  idDoctor?: string;
+  doctorName: string;
+  intitution: string;
+  speciallity: string;
+  phoneNumber?: string;
   email?: string;
-  speciallity?: string;
 }
 export interface User {
   idUser?: number;

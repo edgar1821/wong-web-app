@@ -1,23 +1,29 @@
 import { Modal } from "flowbite-react";
 import { useForm, FormProvider } from "react-hook-form";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
 import { Doctor, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
+// import { useShallow } from "zustand/react/shallow";
+
+//logica
+import DoctorSchema from "./doctorSchema";
 
 function ProductModal({
   openModal,
   onCloseModal,
   acction,
 }: ModalProps) {
-  const methods = useForm<Doctor>();
+  const methods = useForm<Doctor>({
+    resolver: zodResolver(DoctorSchema),
+  });
 
   function save(data: Doctor) {
     console.log("dataa", data);
   }
 
-  console.log(methods.watch());
+  // console.log(methods.watch());
   return (
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
       <Modal.Header />
@@ -33,17 +39,17 @@ function ProductModal({
               onSubmit={methods.handleSubmit(save)}
               className="flex flex-col"
             >
+              {/* <input type="hidden" name="idDoctor" /> */}
               <InputText
-                name="name"
+                name="doctorName"
                 type="text"
-                label="Doctor"
-                placeholder="Zapatos"
+                label="Nombre del doctor"
                 errors={methods.formState.errors}
               />
               <InputText
                 name="intitution"
                 type="text"
-                label="Institucion:"
+                label="Nombre de la intitutión:"
                 placeholder="Clinica Javier Prado"
                 errors={methods.formState.errors}
               />
@@ -55,7 +61,7 @@ function ProductModal({
                 errors={methods.formState.errors}
               />
               <InputText
-                name="phone"
+                name="phoneNumber"
                 type="text"
                 label="Telefono:"
                 errors={methods.formState.errors}
