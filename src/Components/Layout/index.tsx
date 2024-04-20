@@ -22,7 +22,6 @@ function Layout({ children, title = "Ortopedia wong" }: LayoutProps) {
     [location.pathname],
   );
   document.title = documentTitle;
-  console.log(location.pathname);
 
   return (
     <div className="flex h-screen flex-col">

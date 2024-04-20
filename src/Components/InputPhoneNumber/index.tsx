@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputHTMLAttributes } from "react";
-import {
-  FieldErrors,
-  Controller,
-  useFormContext,
-} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import ErrorInput from "@Components/ErrorInput";
-
+import { Doctor } from "@Types/entities";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: "text" | "password";
   label?: string;
   name: string;
   disabled?: boolean;
   placeholder?: string;
-  errors?: FieldErrors | any;
 }
 
-function InputText(props: InputProps) {
-  const { label, name, errors } = props;
-  const { control } = useFormContext();
+function InputPhoneNumber(props: InputProps) {
+  const { label, name } = props;
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<Doctor>();
 
   return (
     <div className="mb-3">
@@ -35,15 +33,17 @@ function InputText(props: InputProps) {
           md:text-lg"
       >
         {label}
-        <Controller
-          name={name}
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <input
-              type="text"
-              {...field}
-              className="
+        <input
+          type="text"
+          {...register("phoneNumber", {
+            required: "El número de teléfono es requerido",
+            pattern: {
+              value: /^\d{10}$/, // 10 dígitos numéricos para un número de teléfono típico
+              message:
+                "El número de teléfono debe tener 10 dígitos numéricos",
+            },
+          })}
+          className="
                   focus:ring-primary-600 
                   block
                   w-full 
@@ -60,15 +60,13 @@ function InputText(props: InputProps) {
                   dark:focus:border-blue-500 
                   dark:focus:ring-blue-500 
                   sm:text-sm"
-            />
-          )}
         />
       </label>
-      {errors && errors[name] && (
-        <ErrorInput message={errors[name].message} />
+      {errors && errors.phoneNumber && (
+        <ErrorInput message={errors.phoneNumber.message!} />
       )}
     </div>
   );
 }
 
-export default InputText;
+export default InputPhoneNumber;

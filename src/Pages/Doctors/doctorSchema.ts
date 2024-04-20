@@ -1,5 +1,7 @@
 import * as zod from "zod";
-const DoctorSchema = zod.object({
+import { Doctor } from "@Types/index";
+
+const DoctorSchema: zod.ZodSchema<Doctor> = zod.object({
   doctorName: zod
     .string()
     .min(1, "Debe ingresar el nombre del doctor"),
@@ -9,9 +11,21 @@ const DoctorSchema = zod.object({
   speciallity: zod.string().min(1, "Debe ingresar la especialidad"),
   phoneNumber: zod
     .string()
-    .length(9, "Debe contener 9 caracteres")
-    .regex(/^\d+$/, "Número no valido, debe ingresar solo números"),
-  // .optional(),
+
+    .refine(
+      (phoneNumber) => {
+        // si es falso se dispara la validacion
+        let result = false;
+        if (phoneNumber === "") {
+          result = true;
+          return result;
+        }
+        return /^\d{9}$/.test(phoneNumber);
+      },
+      {
+        message: "Debe ser un valor numerico de 9 digitos",
+      },
+    ),
 });
 
 export default DoctorSchema;

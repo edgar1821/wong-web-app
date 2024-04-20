@@ -3,6 +3,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
+// import InputPhoneNumber from "@Components/InputPhoneNumber";
 import { Doctor, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
 // import { useShallow } from "zustand/react/shallow";
@@ -23,6 +24,10 @@ function ProductModal({
     console.log("dataa", data);
   }
 
+  function eliminarNoNumeros(cadena: string): string {
+    // Utilizar una expresión regular para reemplazar todos los caracteres que no sean números
+    return cadena.replace(/[^0-9]/g, "");
+  }
   // console.log(methods.watch());
   return (
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
@@ -60,10 +65,22 @@ function ProductModal({
                 placeholder="Especialidad"
                 errors={methods.formState.errors}
               />
+              {/* <InputPhoneNumber
+                label="Telefono2:"
+                type="text"
+                name="phoneNumber"
+              /> */}
               <InputText
                 name="phoneNumber"
                 type="text"
                 label="Telefono:"
+                onChange={(
+                  event: React.ChangeEvent<HTMLInputElement>,
+                ) => {
+                  event.target.value = eliminarNoNumeros(
+                    event.target.value,
+                  );
+                }}
                 errors={methods.formState.errors}
               />
               <InputText
