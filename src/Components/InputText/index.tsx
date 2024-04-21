@@ -17,7 +17,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 function InputText(props: InputProps) {
-  const { label, name, errors } = props;
+  const { label, name, errors, ...rest } = props;
   const { control } = useFormContext();
 
   return (
@@ -41,7 +41,8 @@ function InputText(props: InputProps) {
           defaultValue=""
           render={({ field }) => (
             <input
-              type="text"
+              // type="text"
+              {...rest}
               {...field}
               className="
                   focus:ring-primary-600 

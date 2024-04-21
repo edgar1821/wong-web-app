@@ -6,7 +6,7 @@ import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-import CortizacionModal from "./cotizacionModal";
+import CortizacionModal from "./CotizacionModal";
 import Columns from "./dtaCotizacioncolumns";
 
 const data: Array<Cotizacion> = [
@@ -18,17 +18,19 @@ const data: Array<Cotizacion> = [
     nombrePaciente: "Juan",
     apellidoPaciente: "hernandez",
     medico: {
-      idDoctor: 1000,
-      name: "Aurelio Gambirazio",
+      idDoctor: "wdf",
+      doctorName: "Aurelio Gambirazio",
+      intitution: "",
+      speciallity: "",
     },
     fechaEmision: "10/10/2023",
     fechaCaducidad: "20/10/2023",
     producto: {
-      idProduct: 1,
+      idProduct: "1",
       name: "zapato",
       description: "muy grande",
-      price: 0,
-      idTypeCurrency: 0,
+      price: "0",
+      idTypeCurrency: "a",
     },
     idMedico: 0,
   },
@@ -39,17 +41,19 @@ const data: Array<Cotizacion> = [
     nombrePaciente: "Juan pedro",
     apellidoPaciente: "Marquez Vidal",
     medico: {
-      idDoctor: 200,
-      name: "Perez alvela",
+      idDoctor: "200",
+      doctorName: "Perez alvela",
+      intitution: "",
+      speciallity: "",
     },
     fechaEmision: "10/10/2023",
     fechaCaducidad: "20/10/2023",
     producto: {
-      idProduct: 1,
+      idProduct: "1",
       name: "zapato",
       description: "muy grande",
-      price: 0,
-      idTypeCurrency: 0,
+      price: "0",
+      idTypeCurrency: "0",
     },
     idMedico: 0,
   },

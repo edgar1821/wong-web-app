@@ -3,7 +3,7 @@ import Select, { StylesConfig } from "react-select";
 import {
   useFormContext,
   Controller,
-  FieldErrors,
+  FieldError,
 } from "react-hook-form";
 import ErrorInput from "@Components/ErrorInput";
 import { Option } from "@Types/index";
@@ -13,7 +13,7 @@ interface SelectProps {
   options: Option[];
   defaultValue?: string | null;
   label: string;
-  errors?: FieldErrors | any;
+  errors: FieldError | any;
 }
 
 const customStyles: StylesConfig = {
@@ -40,12 +40,13 @@ const customStyles: StylesConfig = {
 const SelectInput: React.FC<SelectProps> = ({
   name,
   options,
-  defaultValue,
+  // defaultValue,
   label,
   errors,
 }) => {
   const { control } = useFormContext();
-
+  // console.log(errors);
+  // const { value } = (errors[name] = {});
   return (
     <div className="mb-3 flex flex-col">
       <span
@@ -64,24 +65,31 @@ const SelectInput: React.FC<SelectProps> = ({
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue ?? ""}
         render={({ field }) => (
           <Select
-            {...field}
+            // {...field}
             styles={customStyles}
             options={options}
-            onChange={(selectOption) =>
-              field.onChange(selectOption.value)
-            }
+            value={options.find((c) => c.value === field.value)}
+            onChange={(selectOption: any) => {
+              console.log(typeof selectOption);
+              console.log("selectOption", selectOption);
+              field.onChange(selectOption.value);
+            }}
             onBlur={field.onBlur}
+            // onBlur={field.onBlur}
           />
         )}
       />
       {errors && errors[name] && (
-        <ErrorInput message={errors[name].message} />
+        <ErrorInput message={errors[name]?.message || ""} />
       )}
     </div>
   );
 };
 
 export default SelectInput;
+
+// onChange={(selectOption) =>
+//   field.onChange(selectOption.value)
+// }

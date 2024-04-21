@@ -1,22 +1,23 @@
 import { Modal } from "flowbite-react";
 import { useForm, FormProvider } from "react-hook-form";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
 import Select from "@Components/Select";
 import DatePicker from "@Components/Datepicker";
 import { Cotizacion, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
-
+// import Dropdown from "@Components/Dropdown";
 //helpers
 import { getDates } from "../../helpers";
-
+import cotizacionSchema from "./cotizacionSchema";
 function CotizacionModal({
   openModal,
   onCloseModal,
   acction,
 }: ModalProps) {
   const methods = useForm<Cotizacion>({
+    resolver: zodResolver(cotizacionSchema),
     defaultValues: {
       fechaEmision: getDates(),
       fechaCaducidad: getDates(10),
@@ -27,7 +28,8 @@ function CotizacionModal({
     console.log("dataa", data);
   }
 
-  console.log(methods.watch());
+  // console.log(methods.watch());
+  console.log("error", methods.formState.errors);
   return (
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
       <Modal.Header />
@@ -52,6 +54,7 @@ function CotizacionModal({
               <Select
                 label="Tipo de documento:"
                 name="idTipoDocumento"
+                errors={methods.formState.errors}
                 options={[
                   { value: "1", label: "DNI" },
                   { value: "2", label: "RUC" },
@@ -61,14 +64,14 @@ function CotizacionModal({
               <InputText
                 name="nroDocumento"
                 type="text"
-                label="Nro de documento:"
+                label="Numero de documento:"
                 placeholder=""
                 errors={methods.formState.errors}
               />
               <InputText
                 name="nombrePaciente"
                 type="text"
-                label="Nombres Paciente:"
+                label="Nombres del paciente:"
                 placeholder=""
                 errors={methods.formState.errors}
               />
@@ -78,6 +81,15 @@ function CotizacionModal({
                 label="Apellidos del Paciente:"
                 placeholder=""
                 errors={methods.formState.errors}
+              />
+              <Select
+                label="Doctor"
+                name="idDoctor"
+                errors={methods.formState.errors}
+                options={[
+                  { value: "zapato", label: "Zapato" },
+                  { value: "silla", label: "Silla" },
+                ]}
               />
               <DatePicker
                 name="fechaEmision"
@@ -89,12 +101,20 @@ function CotizacionModal({
               />
               <Select
                 label="Producto"
-                name="productos"
+                name="idProduct"
+                errors={methods.formState.errors}
                 options={[
                   { value: "zapato", label: "Zapato" },
                   { value: "silla", label: "Silla" },
                 ]}
               />
+              {/* <Dropdown
+                name="idProduct"
+                options={[
+                  { value: "zapato", label: "Zapato" },
+                  { value: "silla", label: "Silla" },
+                ]}
+              /> */}
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>

@@ -1,67 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useFormContext, Controller } from "react-hook-form";
+import { Dropdown } from "flowbite-react";
+import { Option } from "@Types/index";
 
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface DropdownProps {
-  name: string;
+interface DropProps {
   options: Option[];
+  name: string;
+}
+export function DropDownList({ options, name }: DropProps) {
+  return (
+    <Dropdown label="Dropdown" name={name}>
+      {options.length > 0 && (
+        <>
+          <Dropdown.Item>Dashboard</Dropdown.Item>
+          <Dropdown.Item>Settings</Dropdown.Item>
+          <Dropdown.Item>Earnings</Dropdown.Item>
+          <Dropdown.Item>Sign out</Dropdown.Item>
+        </>
+      )}
+    </Dropdown>
+  );
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ name, options }) => {
-  const { control, setValue } = useFormContext();
-  const [filteredOptions, setFilteredOptions] =
-    useState<Option[]>(options);
-
-  useEffect(() => {
-    setFilteredOptions(options);
-  }, [options]);
-
-  const normalize = (str: string) => {
-    return str
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-  };
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const inputValue = normalize(event.target.value);
-    const filtered = options.filter((option) =>
-      normalize(option.label).includes(inputValue),
-    );
-    setFilteredOptions(filtered);
-  };
-
-  const handleSelectOption = (value: string) => {
-    setValue(name, value); // Establece el valor del campo del formulario
-  };
-
-  return (
-    <div>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
-          <input {...field} type="text" onChange={handleInputChange} />
-        )}
-      />
-      <ul>
-        {filteredOptions.map((option) => (
-          <li
-            key={option.value}
-            onClick={() => handleSelectOption(option.value)}
-          >
-            {option.label}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default Dropdown;
+export default DropDownList;
