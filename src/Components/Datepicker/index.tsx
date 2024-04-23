@@ -35,7 +35,7 @@ const DatePickerInput: React.FC<DatePickerProps> = ({
           <input
             {...field}
             type="date"
-            placeholder="YYYY-MM-DD"
+            placeholder="DD/MM/YYYY"
             className="
                   focus:ring-primary-600 
                   block

@@ -14,6 +14,7 @@ const cotizacionSchema = z.object({
   idDoctor: z.string({
     required_error: "Seleccione el doctor",
   }),
+  fechaEmision: z.string(),
   //z.object({}).or(z.string())
   // .refine((idDoctor) => {
   //   if (idDoctor.value === "") {

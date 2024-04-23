@@ -5,6 +5,7 @@ import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
 import Select from "@Components/Select";
 import DatePicker from "@Components/Datepicker";
+import DatePickerBest from "@Components/DatePickerBest";
 import { Cotizacion, ModalProps } from "@Types/index";
 import Button from "@Components/Button";
 // import Dropdown from "@Components/Dropdown";
@@ -91,10 +92,14 @@ function CotizacionModal({
                   { value: "silla", label: "Silla" },
                 ]}
               />
-              <DatePicker
+              <DatePickerBest
                 name="fechaEmision"
                 label="Fecha de emisión:"
               />
+              {/* <DatePicker
+                name="fechaEmision"
+                label="Fecha de emisión:"
+              /> */}
               <DatePicker
                 name="fechaCaducidad"
                 label="Fecha de emisión:"
@@ -108,13 +113,7 @@ function CotizacionModal({
                   { value: "silla", label: "Silla" },
                 ]}
               />
-              {/* <Dropdown
-                name="idProduct"
-                options={[
-                  { value: "zapato", label: "Zapato" },
-                  { value: "silla", label: "Silla" },
-                ]}
-              /> */}
+
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>
