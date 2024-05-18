@@ -1,4 +1,5 @@
 // export * from "./entities";
+export * from "./AuthUser";
 export interface Option {
   value: string;
   label: string;

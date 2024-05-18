@@ -17,3 +17,7 @@ export enum URLS {
   URL_MY_PROFILE = "/mi-perfil",
   URL_CHANGE_PASSWORD = "/mi-perfil/cambio-password",
 }
+export enum URLS_API {
+  URL_LOGIN = "/api/v1/login",
+  URL_USERS = "/api/v1/users",
+}

@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import { useRoutes, BrowserRouter } from "react-router-dom";
 // pages
 import Login from "./Pages/Login";
@@ -9,9 +10,13 @@ import UsersPage from "@Pages/Users";
 // profile pages
 import MyProfile from "@Pages/MyProfile";
 import ChangePassword from "@Pages/ChangePassword";
+// hoks
 // constants
 import { URLS } from "./Constants/url";
+
+//store
 function AppRoutes() {
+  // const Routes: RouteObject;
   const AppRoutes = useRoutes([
     {
       path: URLS.URL_LOGIN,
