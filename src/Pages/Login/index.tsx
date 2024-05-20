@@ -19,7 +19,7 @@ function Login() {
     // resolver: zodResolver(QrUrlSchema),
     defaultValues: {
       email: "edgar.gamarra21@gmail.com",
-      password: "123456789",
+      password: "12345678",
     },
   });
 

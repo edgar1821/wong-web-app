@@ -66,7 +66,7 @@ function ProductModal({
               <SelectInput
                 label="Tipo de moneda:"
                 name="idTypeCurrency"
-                errors={methods.formState.errors}
+                // errors={methods.formState.errors}
                 options={[
                   { value: "1", label: "Soles" },
                   { value: "2", label: "Dolares" },

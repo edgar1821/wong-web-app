@@ -3,7 +3,8 @@ import Select, { StylesConfig } from "react-select";
 import {
   useFormContext,
   Controller,
-  FieldError,
+  // FieldError,
+  // useFormState,
 } from "react-hook-form";
 import ErrorInput from "@Components/ErrorInput";
 import { Option } from "@Types/index";
@@ -13,7 +14,8 @@ interface SelectProps {
   options: Option[];
   defaultValue?: string | null;
   label: string;
-  errors: FieldError | any;
+  onChange?: (value: Option) => void;
+  // errors: FieldError | any;
 }
 
 const customStyles: StylesConfig = {
@@ -42,11 +44,14 @@ const SelectInput: React.FC<SelectProps> = ({
   options,
   // defaultValue,
   label,
-  errors,
+  onChange,
+  // errors,
 }) => {
-  const { control } = useFormContext();
-  // console.log(errors);
-  // const { value } = (errors[name] = {});
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
   return (
     <div className="mb-3 flex flex-col">
       <span
@@ -72,9 +77,13 @@ const SelectInput: React.FC<SelectProps> = ({
             options={options}
             value={options.find((c) => c.value === field.value)}
             onChange={(selectOption: any) => {
-              console.log(typeof selectOption);
-              console.log("selectOption", selectOption);
               field.onChange(selectOption.value);
+              if (onChange) {
+                onChange({
+                  value: selectOption.value,
+                  label: selectOption.label,
+                });
+              }
             }}
             onBlur={field.onBlur}
             // onBlur={field.onBlur}

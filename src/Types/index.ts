@@ -30,14 +30,21 @@ export interface Doctor {
   phoneNumber?: string;
   email?: string;
 }
+export interface Rol {
+  role_id: string;
+  role_name: string;
+  user_screen: boolean;
+  doctor_screen: boolean;
+  price_quote_screen: boolean;
+  update_user_password: boolean;
+}
 export interface User {
-  idUser?: number;
+  userId?: string;
   name: string;
-  lastName: string;
-  rol: number;
   email: string;
   password: string;
   passwordVerified: string;
+  rol_id: string;
 }
 export interface Cotizacion {
   idCotizacion?: number;

@@ -7,14 +7,14 @@ import DoctorModal from "./UserModal";
 import Columns from "./UserColumnsDatatable";
 
 const data: Array<Doctor> = [
-  {
-    id: 1,
-    name: "Juan Cabrera",
-  },
-  {
-    id: 2,
-    name: "Aurelio Gambirazio",
-  },
+  // {
+  //   id: 1,
+  //   name: "Juan Cabrera",
+  // },
+  // {
+  //   id: 2,
+  //   name: "Aurelio Gambirazio",
+  // },
 ];
 
 function UsersPage() {

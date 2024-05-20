@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { Modal } from "flowbite-react";
 import { useForm, FormProvider } from "react-hook-form";
-
+import { useStore } from "../../store";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
+import SelectInput from "@Components/Select";
 import { ModalProps, User } from "@Types/index";
 import Button from "@Components/Button";
 
@@ -11,13 +13,18 @@ function ProductModal({
   onCloseModal,
   acction,
 }: ModalProps) {
+  const fetchRoles = useStore((state) => state.fetchRoles);
+  const rolesOption = useStore((state) => state.rolesOption);
   const methods = useForm<User>();
 
   function save(data: User) {
     console.log("dataa", data);
   }
+  useEffect(() => {
+    fetchRoles();
+  }, [fetchRoles]);
 
-  console.log(methods.watch());
+  console.log(rolesOption);
   return (
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
       <Modal.Header />
@@ -38,13 +45,7 @@ function ProductModal({
               <InputText
                 name="name"
                 type="text"
-                label="Nombres:"
-                errors={methods.formState.errors}
-              />
-              <InputText
-                name="lastName"
-                type="text"
-                label="Apellidos:"
+                label="Nombre completo:"
                 errors={methods.formState.errors}
               />
               <InputText
@@ -65,6 +66,14 @@ function ProductModal({
                 label="Repite el password:"
                 errors={methods.formState.errors}
               />
+              {rolesOption.length > 0 && (
+                <SelectInput
+                  name="rol_id"
+                  label="Rol:"
+                  options={rolesOption}
+                />
+              )}
+
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>

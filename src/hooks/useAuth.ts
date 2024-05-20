@@ -10,9 +10,7 @@ export function useAuth() {
     const session = window.localStorage.getItem("wongAuth");
     if (session) {
       const decoded: any = jwtDecode(session);
-      // const {
-      //   payload: { user, token },
-      // } = decoded;
+
       const currentTime = Date.now() / 1000;
       if (decoded.exp < currentTime) {
         setIsAuthenticated(false);
@@ -31,8 +29,6 @@ export function useAuth() {
       if (event.key === "wongAuth") {
         const value = window.localStorage.getItem("wongAuth");
 
-        console.log("value", value);
-        console.log(typeof value);
         if (value !== "" && value !== null) {
           const parsedValue = JSON.parse(value);
           setIsAuthenticated(true);

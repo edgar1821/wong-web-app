@@ -26,7 +26,8 @@
       "@Assets/*": ["./assets/*"],
       "@Constants/*": ["./Constants/*"],
       "@Types/*": ["./Types/*"],
-      "@Helpers/*": ["./helpers/*"]
+      "@Helpers/*": ["./helpers/*"],
+      "@Hooks/*": ["./hooks/*"]
     }
   },
   "include": ["src"],

@@ -20,4 +20,7 @@ export enum URLS {
 export enum URLS_API {
   URL_LOGIN = "/api/v1/login",
   URL_USERS = "/api/v1/users",
+
+  // roles
+  URL_ROLES = "/api/v1/roles",
 }
