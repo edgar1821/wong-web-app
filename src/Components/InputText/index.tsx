@@ -17,8 +17,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 function InputText(props: InputProps) {
-  const { label, name, errors, ...rest } = props;
-  const { control } = useFormContext();
+  const { label, name, ...rest } = props;
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="mb-3">
@@ -66,7 +69,7 @@ function InputText(props: InputProps) {
         />
       </label>
       {errors && errors[name] && (
-        <ErrorInput message={errors[name].message} />
+        <ErrorInput message={errors[name]?.message} />
       )}
     </div>
   );
