@@ -5,6 +5,12 @@ const userSchema = z
     userId: z.string().optional(),
     name: z.string().min(1, "Ingrese el nombre completo"),
     email: z.string().email("Ingrese un email valido"),
+    phoneNumber: z
+      .string()
+      .regex(
+        /^\d{9}$/,
+        "Ingrese valores numericos, número de telefono debe tener 9 digitos",
+      ),
     password: z
       .string()
       .min(6, "La contraseña debe contener al menos 6 caracteres"),

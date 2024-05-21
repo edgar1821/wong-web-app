@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { fetchData } from "@Helpers/fetchData";
 import { URLS_API } from "@Constants/url";
-import { Option, Rol } from "@Types/index";
+import { Option, Rol, User } from "@Types/index";
 
 function useUser() {
   const [rolesOption, setRolesOption] = useState<Option[]>([]);
@@ -21,6 +22,18 @@ function useUser() {
       }));
     }
     setRolesOption(rolesOption);
+  }
+  async function fetchSaveUser(user: User) {
+    const body: any = {
+      name: user.name,
+      email: user.email,
+    };
+    const response = await fetchData({
+      url: URLS_API.URL_USERS,
+      body,
+      Type: "post",
+      useAuth: true,
+    });
   }
   useEffect(() => {
     fetchRoles();

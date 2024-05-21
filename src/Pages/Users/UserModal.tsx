@@ -49,6 +49,11 @@ function ProductModal({
               />
               <InputText name="email" type="text" label="Email:" />
               <InputText
+                name="phoneNumber"
+                type="text"
+                label="Número de telefono:"
+              />
+              <InputText
                 name="password"
                 type="password"
                 label="Contraseña:"

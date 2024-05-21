@@ -42,6 +42,7 @@ export interface User {
   userId?: string;
   name: string;
   email: string;
+  phoneNumber: string;
   password: string;
   passwordVerified: string;
   rol_id: string;
