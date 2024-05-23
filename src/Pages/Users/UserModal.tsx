@@ -14,13 +14,22 @@ function ProductModal({
   onCloseModal,
   acction,
 }: ModalProps) {
-  const { rolesOption } = useUser();
+  const { rolesOption, fetchSaveUser } = useUser();
   const methods = useForm<User>({
     resolver: zodResolver(UserSchema),
+    defaultValues: {
+      name: "Victor Merino",
+      email: "victor@gmail.com",
+      phoneNumber: "987654321",
+      password: "987654321",
+      passwordVerified: "987654321",
+      rol_id: "7ec3a598-27ab-485a-a750-1dd515a9baf5",
+    },
   });
 
   function save(data: User) {
     console.log("dataa", data);
+    fetchSaveUser(data);
   }
   // console.log("rolesOption", rolesOption);
 

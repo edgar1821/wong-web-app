@@ -27,18 +27,26 @@ function useUser() {
     const body: any = {
       name: user.name,
       email: user.email,
+      password: user.password,
+      phone_number: user.phoneNumber,
+      role_id: user.rol_id,
     };
-    const response = await fetchData({
-      url: URLS_API.URL_USERS,
-      body,
-      Type: "post",
-      useAuth: true,
-    });
+    try {
+      const response = await fetchData({
+        url: URLS_API.URL_USERS,
+        body,
+        Type: "post",
+        useAuth: true,
+      });
+      debugger;
+    } catch (e) {
+      debugger;
+    }
   }
   useEffect(() => {
     fetchRoles();
   }, []);
-  return { rolesOption };
+  return { rolesOption, fetchSaveUser };
 }
 
 export default useUser;

@@ -1,0 +1,42 @@
+{
+    "data": {
+        "message": "User created successfully"
+    },
+    "status": 201,
+    "statusText": "Created",
+    "headers": {
+        "content-length": "39",
+        "content-type": "application/json"
+    },
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "adapter": [
+            "xhr",
+            "http"
+        ],
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {},
+        "headers": {
+            "Accept": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyYTNiMTYyNy1lNTA3LTRkMmYtOGNiZS02MjQxZTZlYTBiNDQiLCJ1c2VyIjoiRWRnYXIgR2FtYXJyYSBSb2phcyIsImVtYWlsIjoiZWRnYXIuZ2FtYXJyYTIxQGdtYWlsLmNvbSIsImV4cCI6MTcxNjM1NjI5NH0.H1fauxm0c2ENHau9FxU0XwtLnnf4RKZ1n1VA90TMLCg",
+            "Content-Type": "application/json"
+        },
+        "method": "post",
+        "url": "http://localhost:8000/api/v1/users",
+        "data": "{\"name\":\"Victor Merino\",\"email\":\"victor@gmail.com\",\"password\":\"987654321\",\"phone_number\":\"987654321\",\"role_id\":\"7ec3a598-27ab-485a-a750-1dd515a9baf5\"}"
+    },
+    "request": {}
+}

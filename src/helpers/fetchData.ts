@@ -33,6 +33,7 @@ export async function fetchData(props: FetchProps) {
   let response: AxiosResponse | null = null; // Initialize response with null
   if (Type === "get") response = await axios.get(urlFinal);
   if (Type === "post") {
+    debugger;
     response = await axios.post(urlFinal, body, config);
   }
   if (Type === "put") response = await axios.put(urlFinal, body);
