@@ -23,4 +23,7 @@ export enum URLS_API {
 
   // roles
   URL_ROLES = "/api/v1/roles",
+  // PRODUCTS
+  URL_PRODUCTS = "/api/v1/product",
+  URL_CURRENCY_TYPES = "/api/v1/currency_type",
 }

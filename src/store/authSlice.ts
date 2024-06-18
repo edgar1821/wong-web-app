@@ -1,4 +1,4 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
 
 import { LoginForm, UserSession } from "@Types/index";
 import { fetchData } from "@Helpers/fetchData";
@@ -10,7 +10,7 @@ export interface AuthState {
   // getSession: () => void;
 }
 
-export const authSlice = createStore<AuthState>((set) => ({
+export const authSlice = create<AuthState>((set) => ({
   session: {
     userId: "",
     user: "",
@@ -25,6 +25,7 @@ export const authSlice = createStore<AuthState>((set) => ({
       .then((response) => {
         if (response.status === 200) {
           const { payload = {} } = response.data;
+
           if (payload.token) {
             localStorage.setItem("wongAuth", JSON.stringify(payload));
             set({ session: payload.user });

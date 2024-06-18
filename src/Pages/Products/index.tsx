@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { OperationAction, Product } from "@Types/index";
+import { OperationAction, IProduct } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
@@ -8,45 +8,44 @@ import Datatable from "@Components/Datatable";
 import PageTitle from "@Components/PageTitle";
 import ProductModal from "./ProductModal";
 import Columns from "./datatableColumns";
-
-const data: Array<Product> = [
-  {
-    idProduct: 1,
-    name: "Zapato ortopedico",
-    description: "algo",
-    price: 200,
-    idTypeCurrency: 1,
-  },
-  {
-    idProduct: 2,
-    name: "Silla de rueda",
-    description: "algo",
-    price: 400,
-    idTypeCurrency: 2,
-  },
-];
+import { useProductStore } from "../../store/useProductStore";
+interface IProductModal {
+  open: boolean;
+  action: OperationAction;
+}
 function Products() {
-  const [openModal, setOpenModal] = useState(false);
-  const [action, setAction] = useState<OperationAction>("create");
+  // const fetchCurrencyTypes = useProductStore(
+  //   (state) => state.fetchCurrencyTypes,
+  // );
+  const fetchProducts = useProductStore(
+    (state) => state.fetchProducts,
+  );
+  const products = useProductStore((state) => state.products);
+  const [modalProduct, setModalProduct] = useState<IProductModal>({
+    open: false,
+    action: "create",
+  });
 
   const closeModal = () => {
-    setOpenModal(false);
+    setModalProduct({ open: false, action: "create" });
   };
   function handleClickAdd(): void {
-    setAction("create");
-    setOpenModal(true);
+    setModalProduct({ open: true, action: "create" });
   }
   function handleClickActionRow(
     accion: OperationAction,
-    item: Product,
+    item: IProduct,
   ) {
     console.log(accion);
     console.log(item);
     if (accion === "edit") {
-      setAction("edit");
-      setOpenModal(true);
+      setModalProduct({ open: true, action: "edit" });
     }
   }
+  console.log("listProductOption", products);
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
   return (
     <>
       <Layout title="pagina">
@@ -55,17 +54,19 @@ function Products() {
           <Datatable
             title="Produtos"
             columns={Columns({ onClick: handleClickActionRow })}
-            data={data}
+            data={products}
             addActionText="Nuevo producto"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <ProductModal
-        openModal={openModal}
-        onCloseModal={closeModal}
-        acction={action}
-      />
+      {modalProduct.open && (
+        <ProductModal
+          openModal={modalProduct.open}
+          onCloseModal={closeModal}
+          acction={modalProduct.action}
+        />
+      )}
     </>
   );
 }

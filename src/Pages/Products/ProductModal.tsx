@@ -1,16 +1,17 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Modal } from "flowbite-react";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
 import Wysiwyg from "@Components/Wysiwyg";
-import { OperationAction, Product } from "@Types/index";
+import { OperationAction, IProduct } from "@Types/index";
 import Button from "@Components/Button";
 import SelectInput from "@Components/Select";
 
 // helpers
 import ProductSchema from "./productSchema";
+import { useProductStore } from "../../store/useProductStore";
 
 interface ProductModalProps {
   openModal: boolean;
@@ -22,15 +23,24 @@ function ProductModal({
   onCloseModal,
   acction,
 }: ProductModalProps) {
-  const methods = useForm<Product>({
-    resolver: yupResolver(ProductSchema),
+  const fetchCurrencyTypes = useProductStore(
+    (state) => state.fetchCurrencyTypes,
+  );
+  const listCurrencyTypesOption = useProductStore(
+    (state) => state.listCurrencyTypesOption,
+  );
+  const methods = useForm<IProduct>({
+    // resolver: yupResolver(ProductSchema),
   });
 
-  function save(data: Product) {
+  function save(data: IProduct) {
     console.log("dataa", data);
   }
 
-  console.log(methods.watch());
+  console.log("listCurrencyTypesOption", listCurrencyTypesOption);
+  useEffect(() => {
+    fetchCurrencyTypes();
+  }, [fetchCurrencyTypes]);
   return (
     <Modal
       show={openModal}
@@ -61,24 +71,15 @@ function ProductModal({
                 type="text"
                 label="Nombre del producto:"
                 placeholder="Zapatos"
-                errors={methods.formState.errors}
               />
               <SelectInput
                 label="Tipo de moneda:"
                 name="idTypeCurrency"
                 // errors={methods.formState.errors}
-                options={[
-                  { value: "1", label: "Soles" },
-                  { value: "2", label: "Dolares" },
-                ]}
+                options={listCurrencyTypesOption}
               />
 
-              <InputText
-                name="price"
-                type="text"
-                label="Precio"
-                errors={methods.formState.errors}
-              />
+              <InputText name="price" type="text" label="Precio" />
               <Wysiwyg
                 name="description"
                 disable={false}

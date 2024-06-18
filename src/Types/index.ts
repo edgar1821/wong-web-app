@@ -1,6 +1,6 @@
 // export * from "./entities";
 export * from "./AuthUser";
-export interface Option {
+export interface IOption {
   value: string;
   label: string;
 }
@@ -11,15 +11,15 @@ export interface LoginForm {
 }
 
 export interface TypeCurrency {
-  idTypeCurrency: number;
-  TypeCurrecy: string;
+  currency_type_id: string;
+  currency_type: string;
 }
-export interface Product {
-  idProduct?: string;
-  name: string;
-  price: string;
-  idTypeCurrency: string;
+export interface IProduct {
+  product_id?: string;
+  product: string;
+  price: number;
   description: string;
+  currency_type_id: string;
 }
 
 export interface Doctor {

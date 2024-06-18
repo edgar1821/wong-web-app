@@ -4,6 +4,9 @@ import Navbarthemen from "./theme";
 import { URLS } from "@Constants/url";
 
 function NavbarWong() {
+  function handleClickLogOut() {
+    window.localStorage.removeItem("wongAuth");
+  }
   return (
     <Navbar fluid rounded theme={Navbarthemen}>
       <Navbar.Brand href="/">
@@ -36,7 +39,9 @@ function NavbarWong() {
           </Dropdown.Item>
 
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleClickLogOut}>
+            Cerrar sesión
+          </Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>

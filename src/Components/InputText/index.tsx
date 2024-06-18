@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputHTMLAttributes } from "react";
-import {
-  FieldErrors,
-  Controller,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import ErrorInput from "@Components/ErrorInput";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -13,7 +9,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   disabled?: boolean;
   placeholder?: string;
-  errors?: FieldErrors | any;
 }
 
 function InputText(props: InputProps) {

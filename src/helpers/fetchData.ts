@@ -26,14 +26,15 @@ export async function fetchData(props: FetchProps) {
     const auth = JSON.parse(localStorage.getItem("wongAuth") || "");
     const token = auth?.token;
     if (config.headers) {
-      config.headers.Accept = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
   }
 
   let response: AxiosResponse | null = null; // Initialize response with null
-  if (Type === "get") response = await axios.get(urlFinal);
+  if (Type === "get") {
+    response = await axios.get(urlFinal, config);
+  }
   if (Type === "post") {
-    debugger;
     response = await axios.post(urlFinal, body, config);
   }
   if (Type === "put") response = await axios.put(urlFinal, body);

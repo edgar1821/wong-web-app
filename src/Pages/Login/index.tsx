@@ -8,18 +8,18 @@ import Button from "@Components/Button";
 import { LoginForm } from "@Types/index";
 import Logo from "@Assets/images/wong_logo.jpg";
 // import { URLS } from "@Constants/url";
-import { useStore } from "../../store";
+import { authSlice } from "../../store/authSlice";
 import { useAuth } from "../../hooks/useAuth";
 import { URLS } from "@Constants/url";
 
 function Login() {
   const { isAuthenticated } = useAuth();
-  const login = useStore((state) => state.login);
+  const login = authSlice((state) => state.login);
   const methods = useForm<LoginForm>({
     // resolver: zodResolver(QrUrlSchema),
     defaultValues: {
       email: "edgar.gamarra21@gmail.com",
-      password: "12345678",
+      password: "123456789",
     },
   });
 
@@ -34,6 +34,7 @@ function Login() {
       navigate(URLS.URL_COTIZACION);
     }
   }, [isAuthenticated, navigate]);
+  console.log("isAuthenticated", isAuthenticated);
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">

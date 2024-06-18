@@ -6,6 +6,7 @@ import { Option, Rol, User } from "@Types/index";
 
 function useUser() {
   const [rolesOption, setRolesOption] = useState<Option[]>([]);
+  const [listaUsuarios, setListaUsuarios] = useState([]);
   async function fetchRoles() {
     let rolesOption: Option[] = [];
     const response = await fetchData({
@@ -38,15 +39,27 @@ function useUser() {
         Type: "post",
         useAuth: true,
       });
-      debugger;
+      console.log(response.data);
     } catch (e) {
-      debugger;
+      console.error(e);
+    }
+  }
+  async function fetchUsers() {
+    const response = await fetchData({
+      url: URLS_API.URL_USERS,
+      Type: "get",
+      useAuth: true,
+    });
+
+    if (response.status === 200) {
+      const listaU = response.data;
+      setListaUsuarios(listaU);
     }
   }
   useEffect(() => {
     fetchRoles();
   }, []);
-  return { rolesOption, fetchSaveUser };
+  return { rolesOption, listaUsuarios, fetchSaveUser, fetchUsers };
 }
 
 export default useUser;
