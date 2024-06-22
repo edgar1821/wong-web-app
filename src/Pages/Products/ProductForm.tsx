@@ -5,8 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { IProduct } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
-
 import PageTitle from "@Components/PageTitle";
+import Breadcrumb from "@Components/Breadcrumb";
 import { useProductStore } from "../../store/useProductStore";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "@Components/InputText";
@@ -107,6 +107,12 @@ function ProductsForm() {
   console.log("productSelected!!!!", productSelected);
   return (
     <Layout title="Nuevo producto">
+      <Breadcrumb
+        items={[
+          { path: "/productos", label: "Productos" },
+          { path: "/productos/registro", label: "Nuevo producto" },
+        ]}
+      />
       <PageTitle>{titulo}</PageTitle>
       <div className="overscroll-auto md:w-7/12">
         <div className="h-auto w-auto">
