@@ -3,6 +3,7 @@ export enum URLS {
   URL_HOME = "/inicio",
   // mantenimiento
   URL_PRODUCTS = "/productos",
+  URL_PRODUCTS_FORM = "/productos/:accion/:id?",
   URL_DOCTORS = "/doctores",
   URL_COTIZACION = "/cotizacion",
 

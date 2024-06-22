@@ -1,11 +1,21 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
 
-export interface UtilsState {
-  toast: (message: string) => void;
+interface IUtils {
+  toastError: {
+    showToas: boolean;
+    message: string;
+  };
+  setToastError: (message: string) => void;
 }
-
-export const utilsSlice = createStore<UtilsState>((set) => ({
-  toast: (message) => {
-    console.log(message);
+export const useUtilsStore = create<IUtils>((set) => ({
+  toastError: {
+    showToas: false,
+    message: "",
+  },
+  setToastError: (message: string) => {
+    set({ toastError: { showToas: true, message } });
+    setTimeout(() => {
+      set({ toastError: { showToas: false, message: "" } });
+    }, 3000);
   },
 }));

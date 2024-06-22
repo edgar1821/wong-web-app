@@ -4,7 +4,6 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Sidebar from "../Sidebar";
 import SidebarProfile from "../SidebarProfile";
-
 import { URLS } from "@Constants/url";
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,7 +30,7 @@ function Layout({ children, title = "Ortopedia wong" }: LayoutProps) {
           {isProfileSidebar && <SidebarProfile />}
           {!isProfileSidebar && <Sidebar />}
         </div>
-        <div className="w-full p-5 md:px-10">{children}</div>
+        <div className="h-screen w-full p-5 md:px-10">{children}</div>
       </div>
       <Footer />
     </div>

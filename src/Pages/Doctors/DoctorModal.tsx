@@ -44,34 +44,25 @@ function ProductModal({
                 name="doctorName"
                 type="text"
                 label="Nombre del doctor"
-                errors={methods.formState.errors}
               />
               <InputText
                 name="intitution"
                 type="text"
                 label="Nombre de la intitutión:"
                 // placeholder="Clinica Javier Prado"
-                errors={methods.formState.errors}
               />
               <InputText
                 name="speciallity"
                 type="text"
                 label="Especialidad:"
-                errors={methods.formState.errors}
               />
 
               <InputText
                 name="phoneNumber"
                 type="text"
                 label="Telefono:"
-                errors={methods.formState.errors}
               />
-              <InputText
-                name="email"
-                type="text"
-                label="Email:"
-                errors={methods.formState.errors}
-              />
+              <InputText name="email" type="text" label="Email:" />
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>

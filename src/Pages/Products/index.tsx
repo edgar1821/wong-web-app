@@ -4,44 +4,28 @@ import { OperationAction, IProduct } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
-
+import ModalConfirmation from "@Components/ModalConfirmation";
 import PageTitle from "@Components/PageTitle";
-import ProductModal from "./ProductModal";
 import Columns from "./datatableColumns";
 import { useProductStore } from "../../store/useProductStore";
-interface IProductModal {
-  open: boolean;
-  action: OperationAction;
-}
+import { useNavigate } from "react-router-dom";
+import { URLS } from "@Constants/url";
 function Products() {
-  // const fetchCurrencyTypes = useProductStore(
-  //   (state) => state.fetchCurrencyTypes,
-  // );
+  const Navigate = useNavigate();
   const fetchProducts = useProductStore(
     (state) => state.fetchProducts,
   );
   const products = useProductStore((state) => state.products);
-  const [modalProduct, setModalProduct] = useState<IProductModal>({
-    open: false,
-    action: "create",
-  });
 
-  const closeModal = () => {
-    setModalProduct({ open: false, action: "create" });
-  };
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   function handleClickAdd(): void {
-    setModalProduct({ open: true, action: "create" });
+    const path = `${URLS.URL_PRODUCTS}/registro`;
+    Navigate(path);
   }
   function handleClickActionRow(
     accion: OperationAction,
     item: IProduct,
-  ) {
-    console.log(accion);
-    console.log(item);
-    if (accion === "edit") {
-      setModalProduct({ open: true, action: "edit" });
-    }
-  }
+  ) {}
   console.log("listProductOption", products);
   useEffect(() => {
     fetchProducts();
@@ -60,11 +44,11 @@ function Products() {
           />
         </div>
       </Layout>
-      {modalProduct.open && (
-        <ProductModal
-          openModal={modalProduct.open}
-          onCloseModal={closeModal}
-          acction={modalProduct.action}
+      {showDeleteModal && (
+        <ModalConfirmation
+          showModal={showDeleteModal}
+          title="Confirmación"
+          message="¿Desea eliminar el producto?"
         />
       )}
     </>
