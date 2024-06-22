@@ -37,8 +37,12 @@ export async function fetchData(props: FetchProps) {
   if (Type === "post") {
     response = await axios.post(urlFinal, body, config);
   }
-  if (Type === "put") response = await axios.put(urlFinal, body);
-  if (Type === "delete") response = await axios.delete(urlFinal);
+  if (Type === "put") {
+    response = await axios.put(urlFinal, body, config);
+  }
+  if (Type === "delete") {
+    response = await axios.delete(urlFinal, config);
+  }
 
   return response!;
 }

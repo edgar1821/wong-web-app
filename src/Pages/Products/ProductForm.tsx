@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
 import { IProduct } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
@@ -13,6 +15,7 @@ import WysiwygEditor from "@Components/Wysiwyg";
 import Button from "@Components/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { TOAST_TYPE } from "@Constants/action";
 
 export const ProductSchema = z.object({
   product_id: z.string().optional(),
@@ -39,6 +42,9 @@ function ProductsForm() {
   const fetchSaveProduct = useProductStore(
     (state) => state.fetchSaveProduct,
   );
+
+  const toastStore = useProductStore((state) => state.toast);
+  const clearToast = useProductStore((state) => state.clearToast);
   const methods = useForm<IProduct>({
     resolver: zodResolver(ProductSchema),
   });
@@ -48,9 +54,23 @@ function ProductsForm() {
   useEffect(() => {
     fetchCurrencyTypes();
   }, [fetchCurrencyTypes]);
-
+  useEffect(() => {
+    if (toastStore.type === TOAST_TYPE.SUCCESS && toastStore.message) {
+      toast.success(toastStore.message);
+      methods.reset();
+      setTimeout(() => {
+        clearToast();
+      }, 5000);
+    }
+    if (toastStore.type === TOAST_TYPE.ERROR && toastStore.message) {
+      toast.error(toastStore.message);
+      setTimeout(() => {
+        clearToast();
+      }, 5000);
+    }
+  }, [clearToast, methods, toastStore]);
   return (
-    <Layout title="pagina">
+    <Layout title="Nuevo producto">
       {params.accion && params.accion === "registro" && (
         <PageTitle>Nuevo Producto</PageTitle>
       )}
@@ -86,6 +106,7 @@ function ProductsForm() {
           </FormProvider>
         </div>
       </div>
+      <Toaster />
     </Layout>
   );
 }
