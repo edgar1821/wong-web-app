@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -42,18 +42,53 @@ function ProductsForm() {
   const fetchSaveProduct = useProductStore(
     (state) => state.fetchSaveProduct,
   );
+  const fetchUpdateProduct = useProductStore(
+    (state) => state.fetchUpdateProduct,
+  );
+  const titulo = useMemo(() => {
+    if (params.accion === "registro") return "Nuevo producto";
+    if (params.accion === "modificar") return "Modificar producto";
+  }, [params.accion]);
 
   const toastStore = useProductStore((state) => state.toast);
   const clearToast = useProductStore((state) => state.clearToast);
+  const fetchInfoProducto = useProductStore(
+    (state) => state.fetchInfoProducto,
+  );
+  const productSelected = useProductStore(
+    (state) => state.productSelected,
+  );
   const methods = useForm<IProduct>({
     resolver: zodResolver(ProductSchema),
   });
   function save(data: IProduct) {
-    fetchSaveProduct(data);
+    if (params.accion === "modificar") {
+      fetchUpdateProduct(data);
+    }
+    if (params.accion === "registro") {
+      fetchSaveProduct(data);
+    }
   }
   useEffect(() => {
     fetchCurrencyTypes();
   }, [fetchCurrencyTypes]);
+  // pide informacion del producto
+  useEffect(() => {
+    if (params.id && params.id !== "") {
+      fetchInfoProducto(params.id);
+    }
+  }, [fetchInfoProducto, params.id]);
+
+  // setea los valores del producto seleccionado
+  useEffect(() => {
+    if (
+      productSelected.product_id &&
+      productSelected.product_id !== ""
+    ) {
+      methods.reset(productSelected);
+    }
+  }, [methods, productSelected]);
+  // muestra el toast
   useEffect(() => {
     if (toastStore.type === TOAST_TYPE.SUCCESS && toastStore.message) {
       toast.success(toastStore.message);
@@ -69,12 +104,10 @@ function ProductsForm() {
       }, 5000);
     }
   }, [clearToast, methods, toastStore]);
+  console.log("productSelected!!!!", productSelected);
   return (
     <Layout title="Nuevo producto">
-      {params.accion && params.accion === "registro" && (
-        <PageTitle>Nuevo Producto</PageTitle>
-      )}
-
+      <PageTitle>{titulo}</PageTitle>
       <div className="overscroll-auto md:w-7/12">
         <div className="h-auto w-auto">
           <FormProvider {...methods}>

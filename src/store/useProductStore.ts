@@ -4,6 +4,7 @@ import { fetchData } from "@Helpers/fetchData";
 import { URLS_API } from "@Constants/url";
 import { TOAST_TYPE } from "@Constants/action";
 interface IProductStore {
+  productSelected: IProduct;
   products: IProduct[];
   listProductOption: IOption[];
   listCurrencyTypesOption: IOption[];
@@ -18,9 +19,12 @@ interface IProductStore {
   fetchProducts: () => void;
   fetchSaveProduct: (data: IProduct) => void;
   fetchDeleteProduct: (product: IProduct) => void;
+  fetchInfoProducto: (producto_id: string) => void;
+  fetchUpdateProduct: (data: IProduct) => void;
 }
 
 export const useProductStore = create<IProductStore>((set) => ({
+  productSelected: {} as IProduct,
   products: [],
   listProductOption: [],
   listCurrencyTypesOption: [],
@@ -115,6 +119,50 @@ export const useProductStore = create<IProductStore>((set) => ({
         },
       });
       console.log("error eliminar producto", error);
+    }
+  },
+  fetchInfoProducto: async (producto_id: string) => {
+    try {
+      const path = `${URLS_API.URL_PRODUCTS}/${producto_id}`;
+      const response = await fetchData({
+        url: path,
+        Type: "get",
+        useAuth: true,
+      });
+      if (response.status === 200) {
+        const { payload = {} } = response.data;
+        set({ productSelected: payload });
+      }
+    } catch (error) {
+      console.log("error registrar producto", error);
+    }
+  },
+  fetchUpdateProduct: async (data: IProduct) => {
+    try {
+      const response = await fetchData({
+        url: URLS_API.URL_PRODUCTS,
+        Type: "put",
+        useAuth: true,
+        body: data,
+      });
+
+      if (response.status === 200) {
+        set({
+          toast: {
+            type: TOAST_TYPE.SUCCESS,
+            message: "Se actualizo correctamente",
+          },
+        });
+        set({ productSelected: data });
+      }
+    } catch (error) {
+      set({
+        toast: {
+          type: TOAST_TYPE.ERROR,
+          message: "Error al actualizar el producto",
+        },
+      });
+      console.log("error registrar producto", error);
     }
   },
 }));

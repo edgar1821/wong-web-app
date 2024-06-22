@@ -52,6 +52,10 @@ function Products() {
         product: item,
       });
     }
+    if (accion === "edit") {
+      const path = `${URLS.URL_PRODUCTS}/modificar/${item.product_id}`;
+      Navigate(path);
+    }
   }
   function handleCloseModalDelete() {
     setShowDeleteModal({
