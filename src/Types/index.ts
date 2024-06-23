@@ -1,4 +1,3 @@
-// export * from "./entities";
 export * from "./AuthUser";
 export interface IOption {
   value: string;
@@ -22,12 +21,12 @@ export interface IProduct {
   currency_type_id: string;
 }
 
-export interface Doctor {
-  idDoctor?: string;
-  doctorName: string;
+export interface IDoctor {
+  doctor_id?: string;
+  doctor_name: string;
   intitution: string;
-  speciallity: string;
-  phoneNumber?: string;
+  spaciallity: string;
+  phone_number?: string;
   email?: string;
 }
 export interface Rol {
@@ -69,4 +68,9 @@ export interface ModalProps {
   openModal: boolean;
   onCloseModal: () => void;
   acction: OperationAction;
+}
+
+export interface IToast {
+  type: string;
+  message: string;
 }

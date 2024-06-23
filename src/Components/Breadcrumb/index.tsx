@@ -1,25 +1,30 @@
 import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
+import { v4 as uuidv4 } from "uuid";
 
 export interface IItemBreadcrumb {
+  key?: string;
   path?: string;
   label: string;
 }
 export interface IBreadcrumb {
   items: IItemBreadcrumb[];
 }
-export function Component({ items }: IBreadcrumb) {
+export function BreadcrumWong({ items }: IBreadcrumb) {
   return (
-    <Breadcrumb aria-label="Default breadcrumb example">
+    <Breadcrumb>
       {items.map((item, index) => (
         <>
-          {index === 0 && (
-            <Breadcrumb.Item href={item.path} icon={HiHome}>
+          {index === 0 ? (
+            <Breadcrumb.Item
+              key={uuidv4()}
+              href={item.path}
+              icon={HiHome}
+            >
               {item.label}
             </Breadcrumb.Item>
-          )}
-          {index !== 0 && (
-            <Breadcrumb.Item key={item.path} href={item.path}>
+          ) : (
+            <Breadcrumb.Item key={uuidv4()} href={item.path}>
               {item.label}
             </Breadcrumb.Item>
           )}
@@ -29,4 +34,4 @@ export function Component({ items }: IBreadcrumb) {
   );
 }
 
-export default Component;
+export default BreadcrumWong;

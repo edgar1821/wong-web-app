@@ -7,7 +7,7 @@ import { IProduct } from "@Types/index";
 import Layout from "@Components/Layout";
 import PageTitle from "@Components/PageTitle";
 import Breadcrumb from "@Components/Breadcrumb";
-import { useProductStore } from "../../store/useProductStore";
+import { useProductStore } from "../../store";
 import { FormProvider, useForm } from "react-hook-form";
 import InputText from "@Components/InputText";
 import SelectInput from "@Components/Select";
@@ -104,7 +104,6 @@ function ProductsForm() {
       }, 5000);
     }
   }, [clearToast, methods, toastStore]);
-  console.log("productSelected!!!!", productSelected);
   return (
     <Layout title="Nuevo producto">
       <Breadcrumb

@@ -6,58 +6,9 @@ import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-import CortizacionModal from "./CotizacionModal";
+import CortizacionModal from "./cotizacionModal";
 import Columns from "./dtaCotizacioncolumns";
 
-const data: Array<Cotizacion> = [
-  {
-    idTipoDocumento: 1,
-    idCotizacion: 1,
-    nroDocumento: 87654321,
-
-    nombrePaciente: "Juan",
-    apellidoPaciente: "hernandez",
-    medico: {
-      idDoctor: "wdf",
-      doctorName: "Aurelio Gambirazio",
-      intitution: "",
-      speciallity: "",
-    },
-    fechaEmision: "10/10/2023",
-    fechaCaducidad: "20/10/2023",
-    producto: {
-      idProduct: "1",
-      name: "zapato",
-      description: "muy grande",
-      price: "0",
-      idTypeCurrency: "a",
-    },
-    idMedico: 0,
-  },
-  {
-    idTipoDocumento: 1,
-    nroDocumento: 87654321,
-    idCotizacion: 2,
-    nombrePaciente: "Juan pedro",
-    apellidoPaciente: "Marquez Vidal",
-    medico: {
-      idDoctor: "200",
-      doctorName: "Perez alvela",
-      intitution: "",
-      speciallity: "",
-    },
-    fechaEmision: "10/10/2023",
-    fechaCaducidad: "20/10/2023",
-    producto: {
-      idProduct: "1",
-      name: "zapato",
-      description: "muy grande",
-      price: "0",
-      idTypeCurrency: "0",
-    },
-    idMedico: 0,
-  },
-];
 function PageCotizacion() {
   const [openModal, setOpenModal] = useState(false);
   const [action, setAction] = useState<OperationAction>("create");
@@ -88,7 +39,7 @@ function PageCotizacion() {
           <Datatable
             title="Produtos"
             columns={Columns({ onClick: handleClickActionRow })}
-            data={data}
+            data={[]}
             addActionText="Nueva Cotización"
             onClick={handleClickAdd}
           />

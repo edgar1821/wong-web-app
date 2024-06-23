@@ -2,6 +2,7 @@
 import { TableColumn } from "react-data-table-component";
 import { Button } from "flowbite-react";
 import { OperationAction, IProduct } from "@Types/index";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 
 interface ColumnsProps {
   //   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -31,7 +32,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<IProduct>[] {
               onClick("delete", row);
             }}
           >
-            Eliminar
+            <FaRegTrashAlt size="20px" />
           </Button>
           <span className="w-2"></span>
           <Button
@@ -41,7 +42,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<IProduct>[] {
               onClick("edit", row);
             }}
           >
-            Editar
+            <FaRegEdit size="20px" />
           </Button>
         </div>
       ),

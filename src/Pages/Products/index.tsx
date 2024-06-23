@@ -64,7 +64,6 @@ function Products() {
       message: "",
       product: {} as IProduct,
     });
-    toast("Here is your toast.");
   }
   function handleAccepDeleteProducto() {
     fetchDeleteProduct(showDeleteModal.product);

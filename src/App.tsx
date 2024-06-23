@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useRoutes, BrowserRouter } from "react-router-dom";
 // pages
 import Login from "./Pages/Login";
@@ -6,6 +5,7 @@ import Home from "./Pages/Home";
 import Products from "@Pages/Products";
 import ProductsForm from "@Pages/Products/ProductForm";
 import Doctors from "@Pages/Doctors";
+import DoctorsForm from "@Pages/Doctors/DoctorForm";
 import Cotizacion from "@Pages/Cotizacion";
 import UsersPage from "@Pages/Users";
 // profile pages
@@ -39,6 +39,10 @@ function AppRoutes() {
     {
       path: URLS.URL_DOCTORS,
       element: <Doctors />,
+    },
+    {
+      path: URLS.URL_DOCTORS_FORM,
+      element: <DoctorsForm />,
     },
     {
       path: URLS.URL_COTIZACION,

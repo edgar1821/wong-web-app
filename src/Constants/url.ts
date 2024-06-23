@@ -5,6 +5,7 @@ export enum URLS {
   URL_PRODUCTS = "/productos",
   URL_PRODUCTS_FORM = "/productos/:accion/:id?",
   URL_DOCTORS = "/doctores",
+  URL_DOCTORS_FORM = "/doctores/:accion/:id?",
   URL_COTIZACION = "/cotizacion",
 
   // core
@@ -27,4 +28,6 @@ export enum URLS_API {
   // PRODUCTS
   URL_PRODUCTS = "/api/v1/product",
   URL_CURRENCY_TYPES = "/api/v1/currency_type",
+  // DOCTORS
+  URL_DOCTORS = "/api/v1/doctor",
 }
