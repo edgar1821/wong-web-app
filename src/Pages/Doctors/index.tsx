@@ -67,13 +67,13 @@ function DoctorPage() {
       });
     }
     if (accion === "edit") {
-      const path: string = `${URLS.URL_DOCTORS}/registro`;
+      const path: string = `${URLS.URL_DOCTORS}/modificar/${item.doctor_id}`;
+      Navigate(path);
     }
   }
   useEffect(() => {
     fetchDoctors();
   }, [fetchDoctors]);
-  console.log(doctorToast);
 
   // manejo de toasts
   useEffect(() => {

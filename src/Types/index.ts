@@ -19,12 +19,13 @@ export interface IProduct {
   price: number;
   description: string;
   currency_type_id: string;
+  currency_type?: TypeCurrency;
 }
 
 export interface IDoctor {
   doctor_id?: string;
   doctor_name: string;
-  intitution: string;
+  institution: string;
   spaciallity: string;
   phone_number?: string;
   email?: string;

@@ -25,7 +25,11 @@ function Columns({ onClick }: ColumnsProps): TableColumn<IDoctor>[] {
       selector: (row: IDoctor) => row.spaciallity,
       sortable: true,
     },
-
+    {
+      name: "Institución",
+      selector: (row: IDoctor) => row.institution,
+      sortable: true,
+    },
     {
       name: "Acciones",
       cell: (row: IDoctor) => (

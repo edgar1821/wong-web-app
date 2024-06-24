@@ -26,27 +26,70 @@ function DoctorForm() {
     if (params.accion === "modificar") return "Modificar doctor";
   }, [params.accion]);
   // store
+
+  const clearToast = useDoctorStore((state) => state.clearToast);
+
   const fetchRegistroDoctor = useDoctorStore(
     (state) => state.fetchRegistroDoctor,
   );
+  const fetchInfoDoctor = useDoctorStore(
+    (state) => state.fetchInfoDoctor,
+  );
+  const fetchEditDoctor = useDoctorStore(
+    (state) => state.fetchEditDoctor,
+  );
   const doctorToast = useDoctorStore((state) => state.doctorToast);
+  const doctor = useDoctorStore((state) => state.doctor);
   //methods
   const methods = useForm<IDoctor>({
     resolver: zodResolver(DoctorSchema),
   });
   function save(data: IDoctor) {
-    fetchRegistroDoctor(data);
+    if (params.accion === "modificar") {
+      data.doctor_id = doctor.doctor_id;
+      fetchEditDoctor(data);
+    }
+    if (params.accion === "registro") {
+      fetchRegistroDoctor(data);
+    }
   }
 
+  // manejo de toast
   useEffect(() => {
     if (doctorToast.type === TOAST_TYPE.SUCCESS) {
       toast.success(doctorToast.message);
-      methods.reset();
+      if (params.accion === "registro") {
+        methods.reset();
+      }
     }
     if (doctorToast.type === TOAST_TYPE.ERROR) {
       toast.error(doctorToast.message);
     }
-  }, [doctorToast.message, doctorToast.type, methods]);
+    clearToast();
+  }, [
+    clearToast,
+    doctorToast.message,
+    doctorToast.type,
+    methods,
+    params.accion,
+  ]);
+
+  //manejo llamada de datos al editar
+  useEffect(() => {
+    if (
+      params.accion === "modificar" &&
+      params.id &&
+      params.id !== ""
+    ) {
+      fetchInfoDoctor(params.id);
+    }
+  }, [fetchInfoDoctor, params.accion, params.id]);
+
+  useEffect(() => {
+    if (doctor.doctor_id && doctor.doctor_id !== "") {
+      methods.reset(doctor);
+    }
+  }, [doctor, methods]);
   return (
     <Layout title="Nuevo doctor">
       <div className="mb-3">
@@ -72,7 +115,7 @@ function DoctorForm() {
             label="Nombre del doctor"
           />
           <InputText
-            name="intitution"
+            name="institution"
             type="text"
             label="Nombre de la intitutión:"
             // placeholder="Clinica Javier Prado"

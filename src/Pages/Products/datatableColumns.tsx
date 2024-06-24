@@ -22,6 +22,12 @@ function Columns({ onClick }: ColumnsProps): TableColumn<IProduct>[] {
       sortable: true,
     },
     {
+      name: "Precio",
+      selector: (row: IProduct) =>
+        `${row.currency_type?.currency_type === "Soles" ? "S/" : "$"} ${row.price}`,
+      sortable: true,
+    },
+    {
       name: "Acciones",
       cell: (row: IProduct) => (
         <div className="flex flex-row">

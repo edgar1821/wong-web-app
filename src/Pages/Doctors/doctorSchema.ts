@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const DoctorSchema = z.object({
   doctor_name: z.string().min(1, "Debe ingresar el nombre del doctor"),
-  intitution: z
+  institution: z
     .string()
     .min(1, "Debe ingresar el nombre de la institucíon"),
   spaciallity: z.string().min(1, "Debe ingresar la especialidad"),

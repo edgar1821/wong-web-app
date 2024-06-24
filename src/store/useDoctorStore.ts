@@ -3,6 +3,7 @@ import { fetchData } from "@Helpers/fetchData";
 import { IDoctor, IToast } from "@Types/index";
 import { URLS_API } from "@Constants/url";
 import { TOAST_TYPE } from "@Constants/action";
+// import { AxiosError } from "axios";
 
 interface IDoctorStore {
   doctorToast: IToast;
@@ -13,7 +14,7 @@ interface IDoctorStore {
   fetchRegistroDoctor: (data: IDoctor) => void;
   fetchDeleteDoctor: (data: IDoctor) => void;
   fetchEditDoctor: (data: IDoctor) => void;
-  fetchInfoDoctor: (data: IDoctor) => void;
+  fetchInfoDoctor: (doctor_id: string) => void;
 }
 
 export const useDoctorStore = create<IDoctorStore>((set) => ({
@@ -100,9 +101,50 @@ export const useDoctorStore = create<IDoctorStore>((set) => ({
     }
   },
   fetchEditDoctor: async (doctor) => {
-    console.log(doctor);
+    try {
+      const path = URLS_API.URL_DOCTORS;
+      const response = await fetchData({
+        url: path,
+        Type: "put",
+        body: doctor,
+        useAuth: true,
+      });
+
+      if (response.status === 201) {
+        set({
+          doctorToast: {
+            type: TOAST_TYPE.SUCCESS,
+            message: "Doctor modificado",
+          },
+        });
+      }
+    } catch (error) {
+      //   const err = error as AxiosError;
+      console.error("Error al modificar el doctor", error);
+
+      set({
+        doctorToast: {
+          type: TOAST_TYPE.ERROR,
+          message: "Error al modificar el doctor",
+        },
+      });
+    }
   },
-  fetchInfoDoctor: async (doctor) => {
-    console.log(doctor);
+  fetchInfoDoctor: async (doctor_id) => {
+    try {
+      const path = `${URLS_API.URL_DOCTORS}/${doctor_id}`;
+      const response = await fetchData({
+        url: path,
+        Type: "get",
+        useAuth: true,
+      });
+      if (response.status === 200) {
+        const { data: { payload: { doctor = {} } = {} } = {} } =
+          response;
+        set({ doctor });
+      }
+    } catch (e) {
+      console.error("Error al obtener la informacion del doctor", e);
+    }
   },
 }));
