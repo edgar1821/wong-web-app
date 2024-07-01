@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { fetchData } from "@Helpers/fetchData";
-import { IDoctor, IToast } from "@Types/index";
+import { IDoctor, IOption, IToast } from "@Types/index";
 import { URLS_API } from "@Constants/url";
 import { TOAST_TYPE } from "@Constants/action";
-// import { AxiosError } from "axios";
 
 interface IDoctorStore {
   doctorToast: IToast;
   doctor: IDoctor;
   doctors: IDoctor[];
+  doctorsOption: IOption[];
   clearToast: () => void;
   fetchDoctores: () => void;
   fetchRegistroDoctor: (data: IDoctor) => void;
@@ -23,6 +23,7 @@ export const useDoctorStore = create<IDoctorStore>((set) => ({
     message: "",
   },
   doctor: {} as IDoctor,
+  doctorsOption: [],
   doctors: [],
   clearToast: () => {
     setTimeout(() => {
@@ -35,15 +36,25 @@ export const useDoctorStore = create<IDoctorStore>((set) => ({
     }, 5000);
   },
   fetchDoctores: async () => {
-    const response = await fetchData({
-      url: URLS_API.URL_DOCTORS,
-      Type: "get",
-      useAuth: true,
-    });
-    if (response.status === 200) {
-      const { data: { payload: { doctor_list = [] } = {} } = {} } =
-        response;
-      set({ doctors: doctor_list });
+    try {
+      const response = await fetchData({
+        url: URLS_API.URL_DOCTORS,
+        Type: "get",
+        useAuth: true,
+      });
+      if (response.status === 200) {
+        const { data: { payload: { doctor_list = [] } = {} } = {} } =
+          response;
+        const doctorsOption: IOption[] = doctor_list.map(
+          (doctor: IDoctor) => ({
+            label: doctor.doctor_name,
+            value: doctor,
+          }),
+        );
+        set({ doctors: doctor_list, doctorsOption });
+      }
+    } catch (e) {
+      console.error("Error al obtener los doctores", e);
     }
   },
   fetchRegistroDoctor: async (doctor) => {

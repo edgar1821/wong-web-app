@@ -59,13 +59,11 @@ function Login() {
                   type="text"
                   label="Tu email:"
                   placeholder="ejemplo@email.com"
-                  errors={methods.formState.errors}
                 />
                 <InputText
                   name="password"
                   type="password"
                   label="Password:"
-                  errors={methods.formState.errors}
                 />
 
                 <Button color="green">Ingresar</Button>

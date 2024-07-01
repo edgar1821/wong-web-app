@@ -47,18 +47,23 @@ export interface User {
   passwordVerified: string;
   rol_id: string;
 }
-export interface Cotizacion {
-  idCotizacion?: number;
-  idTipoDocumento: number;
-  nroDocumento: string;
-
-  idDoctor: string;
+export interface IDocumentType {
+  document_type_id: string;
+  document_name: string;
+}
+export interface IProforma {
+  proforma_id?: string;
+  document_type_id: string;
+  document_number: string;
+  patient_name: string;
+  patient_lastname: string;
+  doctor_id: string;
   // medico: Doctor;
-  nombrePaciente: string;
-  apellidoPaciente: string;
-  fechaEmision: string;
-  fechaCaducidad: string;
-  idProduct: string;
+  currency_type_id: string;
+  price: string;
+  description: string;
+  issue_date: string;
+  expiration_date: string;
 }
 
 // suport

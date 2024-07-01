@@ -40,34 +40,44 @@ export const useProductStore = create<IProductStore>((set) => ({
       },
     });
   },
-  fetchProducts: async () => {
-    const response = await fetchData({
+  fetchProducts: (): void => {
+    fetchData({
       url: URLS_API.URL_PRODUCTS,
       Type: "get",
       useAuth: true,
-    });
-    if (response.status === 200) {
-      const { payload: { product_list = [] } = {} } = response.data;
-      set({ products: product_list });
-    }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          const { payload: { product_list = [] } = {} } =
+            response.data;
+          set({ products: product_list });
+        }
+      })
+      .catch((error) => {
+        console.error("error al obtener los productos", error);
+      });
   },
-  fetchCurrencyTypes: async () => {
-    const response = await fetchData({
+  fetchCurrencyTypes: (): void => {
+    fetchData({
       url: URLS_API.URL_CURRENCY_TYPES,
       Type: "get",
       useAuth: true,
-    });
-
-    if (response.status === 200) {
-      const { payload: { list = [] } = {} } = response.data;
-      const listCurrencyTypesOption: IOption[] = list.map(
-        (item: TypeCurrency) => ({
-          value: item.currency_type_id,
-          label: item.currency_type,
-        }),
-      );
-      set({ listCurrencyTypesOption });
-    }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          const { payload: { list = [] } = {} } = response.data;
+          const listCurrencyTypesOption: IOption[] = list.map(
+            (item: TypeCurrency) => ({
+              value: item.currency_type_id,
+              label: item.currency_type,
+            }),
+          );
+          set({ listCurrencyTypesOption });
+        }
+      })
+      .catch((error) => {
+        console.error("error al obtener los tipos de moneda", error);
+      });
   },
   fetchSaveProduct: async (data: IProduct) => {
     try {

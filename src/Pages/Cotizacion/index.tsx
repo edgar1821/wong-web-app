@@ -1,56 +1,54 @@
-import { useState } from "react";
-
-import { Cotizacion, OperationAction } from "@Types/index";
+import { IProforma, OperationAction } from "@Types/index";
 // components
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 
 import PageTitle from "@Components/PageTitle";
-import CortizacionModal from "./cotizacionModal";
+
 import Columns from "./dtaCotizacioncolumns";
+import { useNavigate } from "react-router";
+import { URLS } from "@Constants/url";
+import { useCotizacionStore } from "../../store";
+import { useEffect } from "react";
 
 function PageCotizacion() {
-  const [openModal, setOpenModal] = useState(false);
-  const [action, setAction] = useState<OperationAction>("create");
-
-  const closeModal = () => {
-    setOpenModal(false);
-  };
+  const Navigate = useNavigate();
+  const fetchCotizaciones = useCotizacionStore(
+    (state) => state.fetchCotizaciones,
+  );
+  const cotizaciones = useCotizacionStore(
+    (state) => state.cotizaciones,
+  );
   function handleClickAdd(): void {
-    setAction("create");
-    setOpenModal(true);
+    const path: string = `${URLS.URL_COTIZACION}/registro`;
+    Navigate(path);
   }
   function handleClickActionRow(
     accion: OperationAction,
-    item: Cotizacion,
+    item: IProforma,
   ) {
-    console.log(accion);
     console.log(item);
     if (accion === "edit") {
-      setAction("edit");
-      setOpenModal(true);
+      console.log(accion);
     }
   }
+
+  useEffect(() => {
+    fetchCotizaciones();
+  }, [fetchCotizaciones]);
   return (
-    <>
-      <Layout title="Cotización">
-        <PageTitle>Cortizacion</PageTitle>
-        <div className="overscroll-auto md:w-7/12">
-          <Datatable
-            title="Produtos"
-            columns={Columns({ onClick: handleClickActionRow })}
-            data={[]}
-            addActionText="Nueva Cotización"
-            onClick={handleClickAdd}
-          />
-        </div>
-      </Layout>
-      <CortizacionModal
-        openModal={openModal}
-        onCloseModal={closeModal}
-        acction={action}
-      />
-    </>
+    <Layout title="Cotización">
+      <PageTitle>Cortizacion</PageTitle>
+      <div className="overscroll-auto md:w-7/12">
+        <Datatable
+          title="Produtos"
+          columns={Columns({ onClick: handleClickActionRow })}
+          data={cotizaciones}
+          addActionText="Nueva Cotización"
+          onClick={handleClickAdd}
+        />
+      </div>
+    </Layout>
   );
 }
 

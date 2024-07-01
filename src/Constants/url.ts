@@ -6,7 +6,9 @@ export enum URLS {
   URL_PRODUCTS_FORM = "/productos/:accion/:id?",
   URL_DOCTORS = "/doctores",
   URL_DOCTORS_FORM = "/doctores/:accion/:id?",
+  // cotizacion
   URL_COTIZACION = "/cotizacion",
+  URL_COTIZACION_FORM = "/cotizacion/:accion/:id?",
 
   // core
   URL_PROFORMA = "/proforma",
@@ -30,4 +32,8 @@ export enum URLS_API {
   URL_CURRENCY_TYPES = "/api/v1/currency_type",
   // DOCTORS
   URL_DOCTORS = "/api/v1/doctor",
+
+  // COTIZACION
+  URL_COTIZACION = "/api/v1/proforma",
+  URL_DOCUMENT_TYPE = "/api/v1/document_type",
 }

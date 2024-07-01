@@ -23,14 +23,16 @@ function Layout({ children, title = "Ortopedia wong" }: LayoutProps) {
   document.title = documentTitle;
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex min-h-max flex-col">
       <Navbar />
       <div className="container flex h-full flex-row">
         <div className="hidden md:block">
           {isProfileSidebar && <SidebarProfile />}
           {!isProfileSidebar && <Sidebar />}
         </div>
-        <div className="h-screen w-full p-5 md:px-10">{children}</div>
+        <div className="h-[calc(100%+200px)] w-full p-5 md:px-10">
+          {children}
+        </div>
       </div>
       <Footer />
     </div>

@@ -6,7 +6,9 @@ import Products from "@Pages/Products";
 import ProductsForm from "@Pages/Products/ProductForm";
 import Doctors from "@Pages/Doctors";
 import DoctorsForm from "@Pages/Doctors/DoctorForm";
+// cotizacion
 import Cotizacion from "@Pages/Cotizacion";
+import CotizacionForm from "@Pages/Cotizacion/CotizacionForm";
 import UsersPage from "@Pages/Users";
 // profile pages
 import MyProfile from "@Pages/MyProfile";
@@ -47,6 +49,10 @@ function AppRoutes() {
     {
       path: URLS.URL_COTIZACION,
       element: <Cotizacion />,
+    },
+    {
+      path: URLS.URL_COTIZACION_FORM,
+      element: <CotizacionForm />,
     },
     {
       path: URLS.URL_USERS,
