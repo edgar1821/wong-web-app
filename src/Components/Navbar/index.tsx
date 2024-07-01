@@ -1,9 +1,12 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import WongLog from "../../assets/images/wong_logo.jpg";
 import Navbarthemen from "./theme";
-import { URL_MY_PROFILE } from "@Constants/url";
+import { URLS } from "@Constants/url";
 
 function NavbarWong() {
+  function handleClickLogOut() {
+    window.localStorage.removeItem("wongAuth");
+  }
   return (
     <Navbar fluid rounded theme={Navbarthemen}>
       <Navbar.Brand href="/">
@@ -31,12 +34,14 @@ function NavbarWong() {
               juan@ortopediawong.com
             </span>
           </Dropdown.Header>
-          <Dropdown.Item as="a" href={URL_MY_PROFILE}>
+          <Dropdown.Item as="a" href={URLS.URL_MY_PROFILE}>
             Mi perfil
           </Dropdown.Item>
 
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleClickLogOut}>
+            Cerrar sesión
+          </Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>

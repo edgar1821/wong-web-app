@@ -1,18 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Estilos del editor
-import { useFormContext, Controller } from "react-hook-form";
+import {
+  useFormContext,
+  Controller,
+  FieldErrors,
+} from "react-hook-form";
+import ErrorInput from "@Components/ErrorInput";
 
 interface WysiwygEditorProps {
   name: string;
   disable: boolean;
   label: string;
+  errors?: FieldErrors | any;
 }
 
 const WysiwygEditor: React.FC<WysiwygEditorProps> = ({
   name,
   disable,
   label,
+  errors,
 }) => {
   const { control } = useFormContext();
 
@@ -55,6 +63,9 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({
           />
         )}
       />
+      {errors && errors[name] && (
+        <ErrorInput message={errors[name].message} />
+      )}
     </div>
   );
 };

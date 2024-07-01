@@ -26,24 +26,13 @@ function Home() {
               onSubmit={methods.handleSubmit(save)}
               className="flex flex-col"
             >
-              <InputText
-                name="name"
-                type="text"
-                label="Nombres:"
-                errors={methods.formState.errors}
-              />
+              <InputText name="name" type="text" label="Nombres:" />
               <InputText
                 name="lastName"
                 type="text"
                 label="Apellidos:"
-                errors={methods.formState.errors}
               />
-              <InputText
-                name="email"
-                type="text"
-                label="Email:"
-                errors={methods.formState.errors}
-              />
+              <InputText name="email" type="text" label="Email:" />
 
               <Button type="submit">Guardar</Button>
             </form>

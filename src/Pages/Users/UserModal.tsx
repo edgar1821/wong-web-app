@@ -3,21 +3,36 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import PageTitle from "@Components/PageTitle";
 import InputText from "@Components/InputText";
+import SelectInput from "@Components/Select";
 import { ModalProps, User } from "@Types/index";
 import Button from "@Components/Button";
-
+import useUser from "@Hooks/useUser";
+import UserSchema from "./UserSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 function ProductModal({
   openModal,
   onCloseModal,
   acction,
 }: ModalProps) {
-  const methods = useForm<User>();
+  const { rolesOption, fetchSaveUser } = useUser();
+  const methods = useForm<User>({
+    resolver: zodResolver(UserSchema),
+    defaultValues: {
+      name: "Victor Merino",
+      email: "victor@gmail.com",
+      phoneNumber: "987654321",
+      password: "987654321",
+      passwordVerified: "987654321",
+      rol_id: "7ec3a598-27ab-485a-a750-1dd515a9baf5",
+    },
+  });
 
   function save(data: User) {
     console.log("dataa", data);
+    fetchSaveUser(data);
   }
+  // console.log("rolesOption", rolesOption);
 
-  console.log(methods.watch());
   return (
     <Modal show={openModal} size="4xl" onClose={onCloseModal} popup>
       <Modal.Header />
@@ -35,36 +50,36 @@ function ProductModal({
               onSubmit={methods.handleSubmit(save)}
               className="flex flex-col"
             >
+              <input type="hidden" name="userId" />
               <InputText
                 name="name"
                 type="text"
-                label="Nombres:"
-                errors={methods.formState.errors}
+                label="Nombre completo:"
               />
+              <InputText name="email" type="text" label="Email:" />
               <InputText
-                name="lastName"
+                name="phoneNumber"
                 type="text"
-                label="Apellidos:"
-                errors={methods.formState.errors}
-              />
-              <InputText
-                name="email"
-                type="text"
-                label="Email:"
-                errors={methods.formState.errors}
+                label="Número de telefono:"
               />
               <InputText
                 name="password"
                 type="password"
-                label="Password:"
-                errors={methods.formState.errors}
+                label="Contraseña:"
               />
               <InputText
                 name="passwordVerified"
                 type="password"
-                label="Repite el password:"
-                errors={methods.formState.errors}
+                label="Repite la contraseña:"
               />
+              {rolesOption.length > 0 && (
+                <SelectInput
+                  name="rol_id"
+                  label="Rol del usuario:"
+                  options={rolesOption}
+                />
+              )}
+
               <Button type="submit">Guardar</Button>
             </form>
           </FormProvider>

@@ -1,16 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Select, { StylesConfig } from "react-select";
-import { useFormContext, Controller } from "react-hook-form";
-
-interface Option {
-  value: string;
-  label: string;
-}
+import {
+  useFormContext,
+  Controller,
+  // FieldError,
+  // useFormState,
+} from "react-hook-form";
+import ErrorInput from "@Components/ErrorInput";
+import { Option } from "@Types/index";
 
 interface SelectProps {
   name: string;
   options: Option[];
   defaultValue?: string | null;
   label: string;
+  onChange?: (value: Option) => void;
+  // errors: FieldError | any;
 }
 
 const customStyles: StylesConfig = {
@@ -37,10 +42,15 @@ const customStyles: StylesConfig = {
 const SelectInput: React.FC<SelectProps> = ({
   name,
   options,
-  defaultValue,
+  // defaultValue,
   label,
+  onChange,
+  // errors,
 }) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="mb-3 flex flex-col">
@@ -60,13 +70,35 @@ const SelectInput: React.FC<SelectProps> = ({
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue ?? ""}
         render={({ field }) => (
-          <Select {...field} options={options} styles={customStyles} />
+          <Select
+            // {...field}
+            styles={customStyles}
+            options={options}
+            value={options.find((c) => c.value === field.value)}
+            onChange={(selectOption: any) => {
+              field.onChange(selectOption.value);
+              if (onChange) {
+                onChange({
+                  value: selectOption.value,
+                  label: selectOption.label,
+                });
+              }
+            }}
+            onBlur={field.onBlur}
+            // onBlur={field.onBlur}
+          />
         )}
       />
+      {errors && errors[name] && (
+        <ErrorInput message={errors[name]?.message || ""} />
+      )}
     </div>
   );
 };
 
 export default SelectInput;
+
+// onChange={(selectOption) =>
+//   field.onChange(selectOption.value)
+// }

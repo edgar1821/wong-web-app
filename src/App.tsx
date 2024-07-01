@@ -3,48 +3,69 @@ import { useRoutes, BrowserRouter } from "react-router-dom";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import Products from "@Pages/Products";
+import ProductsForm from "@Pages/Products/ProductForm";
 import Doctors from "@Pages/Doctors";
+import DoctorsForm from "@Pages/Doctors/DoctorForm";
+// cotizacion
 import Cotizacion from "@Pages/Cotizacion";
+import CotizacionForm from "@Pages/Cotizacion/CotizacionForm";
 import UsersPage from "@Pages/Users";
 // profile pages
 import MyProfile from "@Pages/MyProfile";
 import ChangePassword from "@Pages/ChangePassword";
+// hoks
 // constants
-import * as Url from "./Constants/url";
+import { URLS } from "./Constants/url";
+
+//store
 function AppRoutes() {
+  // const Routes: RouteObject;
   const AppRoutes = useRoutes([
     {
-      path: Url.URL_LOGIN,
+      path: URLS.URL_LOGIN,
       element: <Login />,
     },
     {
-      path: Url.URL_HOME,
+      path: URLS.URL_HOME,
       element: <Home />,
     },
+    // productos
     {
-      path: Url.URL_PRODUCTS,
+      path: URLS.URL_PRODUCTS,
       element: <Products />,
     },
     {
-      path: Url.URL_DOCTORS,
+      path: URLS.URL_PRODUCTS_FORM,
+      element: <ProductsForm />,
+    },
+    {
+      path: URLS.URL_DOCTORS,
       element: <Doctors />,
     },
     {
-      path: Url.URL_COTIZACION,
+      path: URLS.URL_DOCTORS_FORM,
+      element: <DoctorsForm />,
+    },
+    {
+      path: URLS.URL_COTIZACION,
       element: <Cotizacion />,
     },
     {
-      path: Url.URL_USERS,
+      path: URLS.URL_COTIZACION_FORM,
+      element: <CotizacionForm />,
+    },
+    {
+      path: URLS.URL_USERS,
       element: <UsersPage />,
     },
 
     //profile pages
     {
-      path: Url.URL_MY_PROFILE,
+      path: URLS.URL_MY_PROFILE,
       element: <MyProfile />,
     },
     {
-      path: Url.URL_CHANGE_PASSWORD,
+      path: URLS.URL_CHANGE_PASSWORD,
       element: <ChangePassword />,
     },
   ]);

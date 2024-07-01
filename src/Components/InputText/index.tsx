@@ -1,24 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputHTMLAttributes } from "react";
-import {
-  FieldErrors,
-  Controller,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import ErrorInput from "@Components/ErrorInput";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type: "text" | "number" | "password" | "date" | "file";
+  type: "text" | "password";
   label?: string;
   name: string;
   disabled?: boolean;
   placeholder?: string;
-  errors?: FieldErrors | any;
 }
 
 function InputText(props: InputProps) {
-  const { label, name, errors } = props;
-  const { control } = useFormContext();
+  const { label, name, ...rest } = props;
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="mb-3">
@@ -41,7 +39,8 @@ function InputText(props: InputProps) {
           defaultValue=""
           render={({ field }) => (
             <input
-              type="text"
+              // type="text"
+              {...rest}
               {...field}
               className="
                   focus:ring-primary-600 
@@ -63,18 +62,10 @@ function InputText(props: InputProps) {
             />
           )}
         />
-        {/* <input
-            type={type}
-            name={name}
-            disabled={disabled}
-            placeholder={placeholder}
-            ref={ref}
-            {...register(name)}
-          /> */}
-        {errors && errors[name] && (
-          <ErrorInput message={errors[name].message} />
-        )}
       </label>
+      {errors && errors[name] && (
+        <ErrorInput message={errors[name]?.message} />
+      )}
     </div>
   );
 }

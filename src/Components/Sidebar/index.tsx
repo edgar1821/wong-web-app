@@ -4,23 +4,23 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineDocumentScanner, MdFactory } from "react-icons/md";
 
 import SidebarTheme from "./sidebarTheme";
-import * as Url from "@Constants/url";
+import { URLS } from "@Constants/url";
 
 function SidebarApp() {
   return (
     <Sidebar theme={SidebarTheme}>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href={Url.URL_PRODUCTS} icon={HiShoppingBag}>
+          <Sidebar.Item href={URLS.URL_PRODUCTS} icon={HiShoppingBag}>
             Productos
           </Sidebar.Item>
-          <Sidebar.Item href={Url.URL_DOCTORS} icon={FaUserDoctor}>
+          <Sidebar.Item href={URLS.URL_DOCTORS} icon={FaUserDoctor}>
             Doctores
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
           <Sidebar.Item
-            href={Url.URL_COTIZACION}
+            href={URLS.URL_COTIZACION}
             icon={MdOutlineDocumentScanner}
           >
             Cotización
@@ -30,7 +30,7 @@ function SidebarApp() {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href={Url.URL_USERS} icon={HiUser}>
+          <Sidebar.Item href={URLS.URL_USERS} icon={HiUser}>
             Usuarios
           </Sidebar.Item>
         </Sidebar.ItemGroup>

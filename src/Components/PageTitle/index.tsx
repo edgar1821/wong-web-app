@@ -1,11 +1,13 @@
 interface PageTitleProps {
   children: React.ReactNode;
+  type?: "title" | "subtitle";
 }
-function PageTitle(props: PageTitleProps) {
-  const { children } = props;
+function PageTitle({ children, type = "title" }: PageTitleProps) {
   return (
-    <h1
-      className="
+    <>
+      {type === "title" && (
+        <h1
+          className="
       mb-4 
       text-2xl 
       font-extrabold 
@@ -15,9 +17,25 @@ function PageTitle(props: PageTitleProps) {
       dark:text-white 
       md:text-4xl 
       "
-    >
-      {children}
-    </h1>
+        >
+          {children}
+        </h1>
+      )}
+      {type === "subtitle" && (
+        <h2
+          className="mb-4 
+      text-xl 
+      font-extrabold 
+      leading-none 
+      tracking-tight 
+      text-brand-green-200 
+      dark:text-white 
+      md:text-2xl "
+        >
+          {children}
+        </h2>
+      )}
+    </>
   );
 }
 

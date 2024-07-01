@@ -12,18 +12,18 @@ function Columns({
   const columns: TableColumn<Cotizacion>[] = [
     {
       name: "Id",
-      selector: (row: Cotizacion) => row.id!,
+      selector: (row: Cotizacion) => row.idCotizacion!,
       sortable: true,
       omit: true,
     },
     {
-      name: "Ruc Cliente",
-      selector: (row: Cotizacion) => row.clienteRuc,
+      name: "Nro de documento",
+      selector: (row: Cotizacion) => row.nroDocumento,
       sortable: true,
     },
     {
       name: "Paciente",
-      selector: (row: Cotizacion) => row.paciente,
+      selector: (row: Cotizacion) => row.nombrePaciente,
       sortable: true,
     },
     {

@@ -30,19 +30,16 @@ function ChangePassword() {
                 name="password"
                 type="password"
                 label="Password anterior:"
-                errors={methods.formState.errors}
               />
               <InputText
                 name="password"
                 type="password"
                 label="Nuevo password:"
-                errors={methods.formState.errors}
               />
               <InputText
                 name="passwordVerified"
                 type="password"
                 label="Repite el password:"
-                errors={methods.formState.errors}
               />
               <Button type="submit">Guardar</Button>
             </form>

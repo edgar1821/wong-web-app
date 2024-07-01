@@ -1,26 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Doctor, OperationAction } from "@Types/index";
 import Layout from "@Components/Layout";
 import Datatable from "@Components/Datatable";
 import PageTitle from "@Components/PageTitle";
 import DoctorModal from "./UserModal";
 import Columns from "./UserColumnsDatatable";
-
-const data: Array<Doctor> = [
-  {
-    id: 1,
-    name: "Juan Cabrera",
-  },
-  {
-    id: 2,
-    name: "Aurelio Gambirazio",
-  },
-];
+import useUser from "@Hooks/useUser";
 
 function UsersPage() {
   const [openModal, setOpenModal] = useState(false);
   const [action, setAction] = useState<OperationAction>("create");
-
+  const { fetchUsers, listaUsuarios } = useUser();
   const closeModal = () => {
     setOpenModal(false);
   };
@@ -39,7 +29,10 @@ function UsersPage() {
       setOpenModal(true);
     }
   }
-
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
+  console.log(listaUsuarios);
   return (
     <>
       <Layout title="Usuarios">
@@ -48,17 +41,19 @@ function UsersPage() {
           <Datatable
             title="Usuarios"
             columns={Columns({ onClick: handleClickActionRow })}
-            data={data}
+            data={listaUsuarios}
             addActionText="Nuevo Usuario"
             onClick={handleClickAdd}
           />
         </div>
       </Layout>
-      <DoctorModal
-        openModal={openModal}
-        onCloseModal={closeModal}
-        acction={action}
-      />
+      {openModal && (
+        <DoctorModal
+          openModal={openModal}
+          onCloseModal={closeModal}
+          acction={action}
+        />
+      )}
     </>
   );
 }

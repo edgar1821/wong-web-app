@@ -1,28 +1,35 @@
 // import {} from 'react'
 import { TableColumn } from "react-data-table-component";
 import { Button } from "flowbite-react";
-import { OperationAction, Product } from "@Types/index";
+import { OperationAction, IProduct } from "@Types/index";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 
 interface ColumnsProps {
   //   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onClick: (accion: OperationAction, item: Product) => void;
+  onClick: (accion: OperationAction, item: IProduct) => void;
 }
-function Columns({ onClick }: ColumnsProps): TableColumn<Product>[] {
-  const columns: TableColumn<Product>[] = [
+function Columns({ onClick }: ColumnsProps): TableColumn<IProduct>[] {
+  const columns: TableColumn<IProduct>[] = [
     {
       name: "Id",
-      selector: (row: Product) => row.id!,
+      selector: (row: IProduct) => row.product_id!,
       sortable: true,
       omit: true,
     },
     {
       name: "Nombre",
-      selector: (row: Product) => row.name,
+      selector: (row: IProduct) => row.product,
+      sortable: true,
+    },
+    {
+      name: "Precio",
+      selector: (row: IProduct) =>
+        `${row.currency_type?.currency_type === "Soles" ? "S/" : "$"} ${row.price}`,
       sortable: true,
     },
     {
       name: "Acciones",
-      cell: (row: Product) => (
+      cell: (row: IProduct) => (
         <div className="flex flex-row">
           <Button
             color="failure"
@@ -31,7 +38,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<Product>[] {
               onClick("delete", row);
             }}
           >
-            Eliminar
+            <FaRegTrashAlt size="20px" />
           </Button>
           <span className="w-2"></span>
           <Button
@@ -41,7 +48,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<Product>[] {
               onClick("edit", row);
             }}
           >
-            Editar
+            <FaRegEdit size="20px" />
           </Button>
         </div>
       ),

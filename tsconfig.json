@@ -25,7 +25,9 @@
       "@Pages/*": ["./Pages/*"],
       "@Assets/*": ["./assets/*"],
       "@Constants/*": ["./Constants/*"],
-      "@Types/*": ["./Types/*"]
+      "@Types/*": ["./Types/*"],
+      "@Helpers/*": ["./helpers/*"],
+      "@Hooks/*": ["./hooks/*"]
     }
   },
   "include": ["src"],

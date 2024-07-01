@@ -1,27 +1,38 @@
 // import {} from 'react'
 import { TableColumn } from "react-data-table-component";
 import { Button } from "flowbite-react";
-import { OperationAction, Doctor } from "@Types/index";
+import { OperationAction, IDoctor } from "@Types/index";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 
 interface ColumnsProps {
-  onClick: (accion: OperationAction, item: Doctor) => void;
+  onClick: (accion: OperationAction, item: IDoctor) => void;
 }
-function Columns({ onClick }: ColumnsProps): TableColumn<Doctor>[] {
-  const columns: TableColumn<Doctor>[] = [
+function Columns({ onClick }: ColumnsProps): TableColumn<IDoctor>[] {
+  const columns: TableColumn<IDoctor>[] = [
     {
       name: "Id",
-      selector: (row: Doctor) => row.id!,
+      selector: (row: IDoctor) => row.doctor_id!,
       sortable: true,
       omit: true,
     },
     {
       name: "Nombre",
-      selector: (row: Doctor) => row.name,
+      selector: (row: IDoctor) => row.doctor_name,
+      sortable: true,
+    },
+    {
+      name: "Especialidad",
+      selector: (row: IDoctor) => row.spaciallity,
+      sortable: true,
+    },
+    {
+      name: "Institución",
+      selector: (row: IDoctor) => row.institution,
       sortable: true,
     },
     {
       name: "Acciones",
-      cell: (row: Doctor) => (
+      cell: (row: IDoctor) => (
         <div className="flex flex-row">
           <Button
             color="failure"
@@ -30,7 +41,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<Doctor>[] {
               onClick("delete", row);
             }}
           >
-            Eliminar
+            <FaRegTrashAlt size="20px" />
           </Button>
           <span className="w-2"></span>
           <Button
@@ -40,7 +51,7 @@ function Columns({ onClick }: ColumnsProps): TableColumn<Doctor>[] {
               onClick("edit", row);
             }}
           >
-            Editar
+            <FaRegEdit size="20px" />
           </Button>
         </div>
       ),
